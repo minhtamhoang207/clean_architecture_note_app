@@ -12,7 +12,7 @@ class AddNotesUseCase extends UseCase<void, AddNoteParams> {
   final INoteRepository repository;
 
   @override
-  Future<Either<Exception, void>> call({required AddNoteParams params}) {
+  Future<Either<Exception, void>> call({AddNoteParams? params}) {
     return repository.addNotes(params);
   }
 }

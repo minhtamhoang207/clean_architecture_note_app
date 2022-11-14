@@ -1,26 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:just_notes/core/util/constants.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-
-@lazySingleton
-class RestClient {
-  Dio init() {
-    final dio = Dio()..options = BaseOptions(baseUrl: Constants.baseUrl);
-    dio.interceptors.addAll([
-      AppInterceptors(),
-      PrettyDioLogger(
-          requestHeader: false,
-          responseHeader: false,
-          requestBody: true,
-          responseBody: true,
-          error: true,
-          compact: true,
-          maxWidth: 90)
-    ]);
-    return dio;
-  }
-}
 
 @LazySingleton(as: Interceptor)
 class AppInterceptors implements Interceptor {

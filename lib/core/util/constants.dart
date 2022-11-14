@@ -1,6 +1,6 @@
 class Constants {
   // APIs
-  static const String baseUrl = 'https://...';
+  static const String baseUrl = 'https://musketeer-api.tk/api/v1';
   // static const String usersRoute = '$baseUrl/users';
   // static const String loginRoute = '$baseUrl/login';
   // static const String eventsRoute = '$baseUrl/events';

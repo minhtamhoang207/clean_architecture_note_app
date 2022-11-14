@@ -2,11 +2,11 @@ import 'package:injectable/injectable.dart';
 import 'package:just_notes/data/models/note_model.dart';
 import 'package:sqflite/sqflite.dart';
 
-import '../../core/params/add_note_param.dart';
+import '../../../core/params/add_note_param.dart';
 
 abstract class IHomeLocalDataSource {
   Future<List<NoteModel>> getNotes();
-  Future<void> addNote(AddNoteParams addNoteParams);
+  Future<void> addNote(AddNoteParams? addNoteParams);
 }
 
 
@@ -30,8 +30,10 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
   }
 
   @override
-  Future<void> addNote(AddNoteParams params) async {
-    await _database.insert('Notes', params.toMap());
+  Future<void> addNote(AddNoteParams? params) async {
+    if(params != null){
+      await _database.insert('Notes', params.toMap());
+    }
   }
   // bool _isFirstPage(int page) => page == 1;
 }
