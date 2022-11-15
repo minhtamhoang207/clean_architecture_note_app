@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_notes/core/injection/injection.dart';
+import 'package:just_notes/presentation/biometric_auth/biometric_auth.dart';
 import 'package:just_notes/presentation/home_page.dart';
 
 void main() async {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: HomePage()
+      home: BiometricAuth()
     );
   }
 }
