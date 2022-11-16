@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_notes/core/injection/injection.dart';
-import 'package:just_notes/presentation/biometric_auth/biometric_auth.dart';
-import 'package:just_notes/presentation/home_page.dart';
+import 'package:just_notes/core/route/route.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection(Environment.dev);
-  runApp(const MyApp());
+  runApp(
+      const ProviderScope(
+          child: MyApp()
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -15,8 +19,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: BiometricAuth()
+    return MaterialApp.router(
+      routerConfig: AppRoute.router,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

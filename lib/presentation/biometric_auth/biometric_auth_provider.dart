@@ -2,46 +2,60 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
+
+final biometricAuthProvider = ChangeNotifierProvider.autoDispose<BiometricAuthProvider>((ref) => BiometricAuthProvider());
 
 class BiometricAuthProvider extends ChangeNotifier {
 
   LocalAuthentication auth = LocalAuthentication();
-  bool isAuthenticating = false;
-  bool authenticated = false;
+  LoadState loadState = LoadState.empty;
 
   Future<void> checkBiometrics() async {
     try {
+      loadState = LoadState.loading;
+      notifyListeners();
       final bool canCheckBiometrics = await auth.canCheckBiometrics;
       if(canCheckBiometrics){
         await authenticate();
       }
     } on PlatformException catch (e) {
       log(e.toString());
+      loadState = LoadState.failed;
+      notifyListeners();
     }
   }
 
   Future<void> authenticate() async {
     try {
-      isAuthenticating = true;
-      authenticated = await auth.authenticate(
+      final bool authenticated = await auth.authenticate(
         localizedReason: 'Đăng nhập SNote bằng sinh trắc học',
         options: const AuthenticationOptions(
           stickyAuth: true,
+          biometricOnly: true,
         ),
       );
-      isAuthenticating = false;
+      if(authenticated){
+        loadState = LoadState.success;
+      } else {
+        loadState = LoadState.failed;
+      }
     } on PlatformException catch (e) {
-      isAuthenticating = false;
       return;
+    } catch (e){
+      loadState = LoadState.failed;
     }
     notifyListeners();
+
   }
 
   Future<void> cancelAuthentication() async {
     await auth.stopAuthentication();
-    isAuthenticating = false;
     notifyListeners();
   }
+}
 
+enum LoadState {
+  empty, loading, success, failed
 }

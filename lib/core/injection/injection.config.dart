@@ -21,9 +21,10 @@ import '../../domain/repositories/i_note_repository.dart' as _i12;
 import '../../domain/usecases/add_note_usecase.dart' as _i14;
 import '../../domain/usecases/auth_usecase.dart' as _i15;
 import '../../domain/usecases/get_note_usecase.dart' as _i16;
+import '../../presentation/home_page/home_page_provider.dart' as _i17;
 import '../network/interceptor.dart' as _i6;
 import '../network/network_info.dart' as _i8;
-import 'register_module.dart' as _i17; // ignore_for_file: unnecessary_lambdas
+import 'register_module.dart' as _i18; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -68,7 +69,11 @@ Future<_i1.GetIt> $initGetIt(
       () => _i15.AuthUseCase(get<_i10.IAuthRepository>()));
   gh.lazySingleton<_i16.GetNotesUseCase>(
       () => _i16.GetNotesUseCase(get<_i12.INoteRepository>()));
+  gh.factory<_i17.HomePageProvider>(() => _i17.HomePageProvider(
+        get<_i14.AddNotesUseCase>(),
+        get<_i16.GetNotesUseCase>(),
+      ));
   return get;
 }
 
-class _$RegisterModule extends _i17.RegisterModule {}
+class _$RegisterModule extends _i18.RegisterModule {}

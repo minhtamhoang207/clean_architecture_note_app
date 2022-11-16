@@ -38,7 +38,10 @@ dependencies:
   local_auth: ^2.1.2
 
   #state management
-  provider: ^6.0.4
+  hooks_riverpod: ^2.1.1
+
+  #route
+  go_router: ^5.1.7
 
 dev_dependencies:
   flutter_test:
