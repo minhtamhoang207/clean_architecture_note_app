@@ -7,9 +7,11 @@ part of 'note_model.dart';
 // **************************************************************************
 
 _$_NoteModel _$$_NoteModelFromJson(Map<String, dynamic> json) => _$_NoteModel(
-      id: json['id'] as int?,
+      id: json['id'] as int,
       title: json['title'] as String,
       content: json['content'] as String,
+      important: json['important'] as int,
+      createAt: json['create_at'] as int,
     );
 
 Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
@@ -17,4 +19,6 @@ Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
       'id': instance.id,
       'title': instance.title,
       'content': instance.content,
+      'important': instance.important,
+      'create_at': instance.createAt,
     };

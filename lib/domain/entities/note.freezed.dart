@@ -16,9 +16,11 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Note {
-  int? get id => throw _privateConstructorUsedError;
+  int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get content => throw _privateConstructorUsedError;
+  int get important => throw _privateConstructorUsedError;
+  int get createAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $NoteCopyWith<Note> get copyWith => throw _privateConstructorUsedError;
@@ -29,7 +31,8 @@ abstract class $NoteCopyWith<$Res> {
   factory $NoteCopyWith(Note value, $Res Function(Note) then) =
       _$NoteCopyWithImpl<$Res, Note>;
   @useResult
-  $Res call({int? id, String title, String content});
+  $Res call(
+      {int id, String title, String content, int important, int createAt});
 }
 
 /// @nodoc
@@ -45,15 +48,17 @@ class _$NoteCopyWithImpl<$Res, $Val extends Note>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? title = null,
     Object? content = null,
+    Object? important = null,
+    Object? createAt = null,
   }) {
     return _then(_value.copyWith(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -62,6 +67,14 @@ class _$NoteCopyWithImpl<$Res, $Val extends Note>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
+      important: null == important
+          ? _value.important
+          : important // ignore: cast_nullable_to_non_nullable
+              as int,
+      createAt: null == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -72,7 +85,8 @@ abstract class _$$_NoteCopyWith<$Res> implements $NoteCopyWith<$Res> {
       __$$_NoteCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? id, String title, String content});
+  $Res call(
+      {int id, String title, String content, int important, int createAt});
 }
 
 /// @nodoc
@@ -84,15 +98,17 @@ class __$$_NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res, _$_Note>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
+    Object? id = null,
     Object? title = null,
     Object? content = null,
+    Object? important = null,
+    Object? createAt = null,
   }) {
     return _then(_$_Note(
-      id: freezed == id
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as int,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -101,6 +117,14 @@ class __$$_NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res, _$_Note>
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
               as String,
+      important: null == important
+          ? _value.important
+          : important // ignore: cast_nullable_to_non_nullable
+              as int,
+      createAt: null == createAt
+          ? _value.createAt
+          : createAt // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -108,18 +132,27 @@ class __$$_NoteCopyWithImpl<$Res> extends _$NoteCopyWithImpl<$Res, _$_Note>
 /// @nodoc
 
 class _$_Note implements _Note {
-  const _$_Note({this.id, required this.title, required this.content});
+  const _$_Note(
+      {required this.id,
+      required this.title,
+      required this.content,
+      required this.important,
+      required this.createAt});
 
   @override
-  final int? id;
+  final int id;
   @override
   final String title;
   @override
   final String content;
+  @override
+  final int important;
+  @override
+  final int createAt;
 
   @override
   String toString() {
-    return 'Note(id: $id, title: $title, content: $content)';
+    return 'Note(id: $id, title: $title, content: $content, important: $important, createAt: $createAt)';
   }
 
   @override
@@ -129,11 +162,16 @@ class _$_Note implements _Note {
             other is _$_Note &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            (identical(other.content, content) || other.content == content));
+            (identical(other.content, content) || other.content == content) &&
+            (identical(other.important, important) ||
+                other.important == important) &&
+            (identical(other.createAt, createAt) ||
+                other.createAt == createAt));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, content);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, content, important, createAt);
 
   @JsonKey(ignore: true)
   @override
@@ -144,16 +182,22 @@ class _$_Note implements _Note {
 
 abstract class _Note implements Note {
   const factory _Note(
-      {final int? id,
+      {required final int id,
       required final String title,
-      required final String content}) = _$_Note;
+      required final String content,
+      required final int important,
+      required final int createAt}) = _$_Note;
 
   @override
-  int? get id;
+  int get id;
   @override
   String get title;
   @override
   String get content;
+  @override
+  int get important;
+  @override
+  int get createAt;
   @override
   @JsonKey(ignore: true)
   _$$_NoteCopyWith<_$_Note> get copyWith => throw _privateConstructorUsedError;

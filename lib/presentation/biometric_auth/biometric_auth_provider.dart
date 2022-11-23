@@ -1,29 +1,27 @@
 import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
 
-final biometricAuthProvider = ChangeNotifierProvider.autoDispose<BiometricAuthProvider>((ref) => BiometricAuthProvider());
+final biometricAuthProvider = StateNotifierProvider.autoDispose<BiometricAuthProvider, LoadState>((ref){
+  return BiometricAuthProvider();
+});
 
-class BiometricAuthProvider extends ChangeNotifier {
+class BiometricAuthProvider extends StateNotifier<LoadState> {
+  BiometricAuthProvider():super(LoadState.empty);
 
   LocalAuthentication auth = LocalAuthentication();
-  LoadState loadState = LoadState.empty;
 
   Future<void> checkBiometrics() async {
     try {
-      loadState = LoadState.loading;
-      notifyListeners();
+      state = LoadState.loading;
       final bool canCheckBiometrics = await auth.canCheckBiometrics;
       if(canCheckBiometrics){
         await authenticate();
       }
     } on PlatformException catch (e) {
       log(e.toString());
-      loadState = LoadState.failed;
-      notifyListeners();
+      state = LoadState.failed;
     }
   }
 
@@ -37,22 +35,20 @@ class BiometricAuthProvider extends ChangeNotifier {
         ),
       );
       if(authenticated){
-        loadState = LoadState.success;
+        state = LoadState.success;
       } else {
-        loadState = LoadState.failed;
+        state = LoadState.failed;
       }
-    } on PlatformException catch (e) {
+    } on PlatformException {
       return;
     } catch (e){
-      loadState = LoadState.failed;
+      state = LoadState.failed;
     }
-    notifyListeners();
-
   }
 
   Future<void> cancelAuthentication() async {
+    state = LoadState.empty;
     await auth.stopAuthentication();
-    notifyListeners();
   }
 }
 

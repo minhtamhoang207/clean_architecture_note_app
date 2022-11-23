@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:just_notes/data/models/note_model.dart';
 import 'package:just_notes/domain/entities/note.dart';
 import 'package:just_notes/domain/repositories/i_note_repository.dart';
 

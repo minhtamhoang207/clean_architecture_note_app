@@ -15,6 +15,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   gap: ^2.0.0
+  flutter_staggered_grid_view: ^0.6.2
+  flutter_linkify: ^5.0.2
+  url_launcher: ^6.1.6
+  popup_menu: ^1.0.5
 
   # Model gen
   freezed: ^2.2.1
@@ -39,6 +43,7 @@ dependencies:
 
   #state management
   hooks_riverpod: ^2.1.1
+  flutter_hooks: ^0.18.5+1
 
   #route
   go_router: ^5.1.7

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:injectable/injectable.dart';
@@ -8,8 +10,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureInjection(Environment.dev);
   runApp(
-      const ProviderScope(
-          child: MyApp()
+      ProviderScope(
+          observers: [Logger()],
+          child: const MyApp()
       )
   );
 }
@@ -23,5 +26,21 @@ class MyApp extends StatelessWidget {
       routerConfig: AppRoute.router,
       debugShowCheckedModeBanner: false,
     );
+  }
+}
+
+class Logger extends ProviderObserver {
+  @override
+  void didUpdateProvider(
+      ProviderBase provider,
+      Object? previousValue,
+      Object? newValue,
+      ProviderContainer container,
+      ) {
+    log('''
+{
+  "provider": "${provider.name ?? provider.runtimeType} : ${provider.hashCode}",
+  "newValue": "$newValue"
+}''');
   }
 }

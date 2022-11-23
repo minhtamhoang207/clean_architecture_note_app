@@ -34,10 +34,24 @@ class HomeRepository implements INoteRepository {
   }
 
   @override
-  Future<Either<Exception, void>> addNotes(AddNoteParams? params) async {
+  Future<Either<Exception, void>> addNotes({required AddNoteParams note}) async {
     if (await _networkInfo.isConnected) {
       try {
-        await _localDataSource.addNote(params);
+        await _localDataSource.addNote(note);
+        return const Right(null);
+      } catch (e) {
+        return Left(Exception(e));
+      }
+    } else {
+      return const Left(SocketException(''));
+    }
+  }
+
+  @override
+  Future<Either<Exception, void>> deleteNote({required int noteID}) async {
+    if (await _networkInfo.isConnected) {
+      try {
+        await _localDataSource.deleteNote(noteID);
         return const Right(null);
       } catch (e) {
         return Left(Exception(e));

@@ -27,7 +27,9 @@ abstract class RegisterModule {
           await db.execute("CREATE TABLE Notes ("
               "id INTEGER PRIMARY KEY,"
               "title TEXT,"
-              "content TEXT"
+              "content TEXT,"
+              "important INTEGER,"
+              "create_at INTEGER"
               ")");
         },
     );
