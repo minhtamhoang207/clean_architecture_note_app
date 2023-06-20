@@ -82,8 +82,10 @@ class HomePageState extends ConsumerState<HomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          context.pushNamed(AddNote.routeName);
-          // ref.invalidate(listNoteFutureProvider);
+          final reload = await context.pushNamed(AddNote.routeName) as bool?;
+          if (reload ?? false) {
+            ref.invalidate(listNoteFutureProvider);
+          }
         },
         backgroundColor: AppColors.greenSheen,
         child: const Icon(Icons.add, color: Colors.white),
@@ -101,13 +103,14 @@ class HomePageState extends ConsumerState<HomePage> {
         PopupMenuItem<String>(
             onTap: () async {
               await ref.read(listNoteController).deleteNote(id: id);
+              ref.invalidate(listNoteFutureProvider);
             },
             value: 'delete',
             child: const Text('Delete'),
         ),
-        const PopupMenuItem<String>(
-            value: 'edit',
-            child: Text('Edit')),
+        // const PopupMenuItem<String>(
+        //     value: 'edit',
+        //     child: Text('Edit')),
       ],
       elevation: 8.0,
     );

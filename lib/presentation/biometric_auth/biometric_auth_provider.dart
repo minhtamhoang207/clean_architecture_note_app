@@ -13,16 +13,17 @@ class BiometricAuthProvider extends StateNotifier<LoadState> {
   LocalAuthentication auth = LocalAuthentication();
 
   Future<void> checkBiometrics() async {
-    try {
-      state = LoadState.loading;
-      final bool canCheckBiometrics = await auth.canCheckBiometrics;
-      if(canCheckBiometrics){
-        await authenticate();
-      }
-    } on PlatformException catch (e) {
-      log(e.toString());
-      state = LoadState.failed;
-    }
+    state = LoadState.success;
+    // try {
+    //   state = LoadState.loading;
+    //   final bool canCheckBiometrics = await auth.canCheckBiometrics;
+    //   if(canCheckBiometrics){
+    //     await authenticate();
+    //   }
+    // } on PlatformException catch (e) {
+    //   log(e.toString());
+    //   state = LoadState.failed;
+    // }
   }
 
   Future<void> authenticate() async {

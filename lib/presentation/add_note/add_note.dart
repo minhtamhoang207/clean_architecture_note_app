@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:just_notes/core/params/add_note_param.dart';
 import 'package:just_notes/core/util/app_colors.dart';
@@ -51,7 +52,10 @@ class AddNote extends HookConsumerWidget {
                         title: title.value,
                         content: content.value,
                         important: state.value,
-                        createAt: DateTime.now().millisecondsSinceEpoch));
+                        createAt: DateTime.now().millisecondsSinceEpoch)
+                ).then((value) {
+                  context.pop(true);
+                });
               },
               style: ButtonStyle(
                 overlayColor: MaterialStateColor.resolveWith(
