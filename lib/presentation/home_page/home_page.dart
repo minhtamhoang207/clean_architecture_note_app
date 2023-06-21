@@ -108,9 +108,9 @@ class HomePageState extends ConsumerState<HomePage> {
             value: 'delete',
             child: const Text('Delete'),
         ),
-        // const PopupMenuItem<String>(
-        //     value: 'edit',
-        //     child: Text('Edit')),
+        const PopupMenuItem<String>(
+            value: 'edit',
+            child: Text('Edit')),
       ],
       elevation: 8.0,
     );
