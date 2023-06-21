@@ -11,17 +11,16 @@ class BiometricAuth extends ConsumerWidget {
   static String get routeLocation => '/';
 
   static const SystemUiOverlayStyle overlayStyle = SystemUiOverlayStyle(
-    systemNavigationBarColor: AppColors.black,
-    systemNavigationBarIconBrightness: Brightness.light,
-    statusBarColor: AppColors.black
-  );
+      systemNavigationBarColor: AppColors.black,
+      systemNavigationBarIconBrightness: Brightness.light,
+      statusBarColor: AppColors.black);
   const BiometricAuth({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     SystemChrome.setSystemUIOverlayStyle(overlayStyle);
     ref.listen(biometricAuthProvider, (previous, next) {
-      if(next == LoadState.success){
+      if (next == LoadState.success) {
         context.replaceNamed(HomePage.routeName);
       }
     });
@@ -29,22 +28,18 @@ class BiometricAuth extends ConsumerWidget {
 
     return Scaffold(
         backgroundColor: AppColors.black,
-        body: state == LoadState.loading?
-            const Center(
-              child: CircularProgressIndicator(
-                color: AppColors.greenSheen,
-              ),
-            ):
-        Center(
-            child: GestureDetector(
-                onTap: () =>
-                    ref.read(biometricAuthProvider.notifier).checkBiometrics(),
-                child: const Icon(
-                    Icons.fingerprint,
-                    color: Colors.white, size: 80
-                )
-            )
-        )
-    );
+        body: state == LoadState.loading
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: AppColors.greenSheen,
+                ),
+              )
+            : Center(
+                child: GestureDetector(
+                    onTap: () => ref
+                        .read(biometricAuthProvider.notifier)
+                        .checkBiometrics(),
+                    child: const Icon(Icons.fingerprint,
+                        color: Colors.white, size: 80))));
   }
 }

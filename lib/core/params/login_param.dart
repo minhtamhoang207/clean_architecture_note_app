@@ -10,5 +10,6 @@ class LoginParams with _$LoginParams {
     required String username,
   }) = _LoginParams;
 
-  factory LoginParams.fromJson(Map<String, dynamic> json) => _$LoginParamsFromJson(json);
+  factory LoginParams.fromJson(Map<String, dynamic> json) =>
+      _$LoginParamsFromJson(json);
 }

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:just_notes/core/injection/injection.dart';
 import 'package:just_notes/core/params/login_param.dart';
 import 'package:just_notes/data/datasources/remote/auth_service.dart';
 import 'package:just_notes/domain/repositories/i_auth_repository.dart';
@@ -16,7 +15,8 @@ class AuthRepository implements IAuthRepository {
   final NetworkInfo _networkInfo;
 
   @override
-  Future<Either<Exception, void>> login({required LoginParams loginParams}) async {
+  Future<Either<Exception, void>> login(
+      {required LoginParams loginParams}) async {
     if (await _networkInfo.isConnected) {
       try {
         await _authService.login(loginParams);

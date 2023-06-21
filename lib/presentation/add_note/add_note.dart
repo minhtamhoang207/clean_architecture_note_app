@@ -47,13 +47,15 @@ class AddNote extends HookConsumerWidget {
         actions: [
           TextButton(
               onPressed: () async {
-                await ref.read(listNoteController).addNote(
-                    note: AddNoteParams(
-                        title: title.value,
-                        content: content.value,
-                        important: state.value,
-                        createAt: DateTime.now().millisecondsSinceEpoch)
-                ).then((value) {
+                await ref
+                    .read(listNoteController)
+                    .addNote(
+                        note: AddNoteParams(
+                            title: title.value,
+                            content: content.value,
+                            important: state.value,
+                            createAt: DateTime.now().millisecondsSinceEpoch))
+                    .then((value) {
                   context.pop(true);
                 });
               },

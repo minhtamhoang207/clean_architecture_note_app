@@ -12,8 +12,7 @@ import '../datasources/local/local.dart';
 
 @LazySingleton(as: INoteRepository)
 class HomeRepository implements INoteRepository {
-  HomeRepository(
-      this._networkInfo, this._localDataSource);
+  HomeRepository(this._networkInfo, this._localDataSource);
 
   final IHomeLocalDataSource _localDataSource;
   final NetworkInfo _networkInfo;
@@ -34,7 +33,8 @@ class HomeRepository implements INoteRepository {
   }
 
   @override
-  Future<Either<Exception, void>> addNotes({required AddNoteParams note}) async {
+  Future<Either<Exception, void>> addNotes(
+      {required AddNoteParams note}) async {
     if (await _networkInfo.isConnected) {
       try {
         await _localDataSource.addNote(note);

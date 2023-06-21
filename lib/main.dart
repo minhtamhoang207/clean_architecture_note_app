@@ -11,12 +11,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await configureInjection(Environment.dev);
-  runApp(
-      ProviderScope(
-          observers: [Logger()],
-          child: const MyApp()
-      )
-  );
+  runApp(ProviderScope(observers: [Logger()], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,11 +29,11 @@ class MyApp extends StatelessWidget {
 class Logger extends ProviderObserver {
   @override
   void didUpdateProvider(
-      ProviderBase provider,
-      Object? previousValue,
-      Object? newValue,
-      ProviderContainer container,
-      ) {
+    ProviderBase provider,
+    Object? previousValue,
+    Object? newValue,
+    ProviderContainer container,
+  ) {
     log('''
 {
   "provider": "${provider.name ?? provider.runtimeType} : ${provider.hashCode}",

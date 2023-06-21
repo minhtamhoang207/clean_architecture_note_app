@@ -17,10 +17,8 @@ final listNoteFutureProvider = FutureProvider<List<Note>>((ref) {
 @lazySingleton
 class HomePageProvider {
   HomePageProvider(
-      this._addNotesUseCase,
-      this._getNotesUseCase,
-      this._deleteNoteUseCase
-  ):super();
+      this._addNotesUseCase, this._getNotesUseCase, this._deleteNoteUseCase)
+      : super();
 
   final AddNotesUseCase _addNotesUseCase;
   final GetNotesUseCase _getNotesUseCase;
@@ -28,10 +26,7 @@ class HomePageProvider {
 
   Future<List<Note>> getNotes() async {
     final response = await _getNotesUseCase();
-     return response.fold(
-             (l) => throw l.toString(),
-             (r) => r
-     );
+    return response.fold((l) => throw l.toString(), (r) => r);
   }
 
   Future<void> addNote({required AddNoteParams note}) async {
@@ -39,11 +34,7 @@ class HomePageProvider {
   }
 
   Future<void> deleteNote({required int id}) async {
-
     final result = await _deleteNoteUseCase(params: id);
-    result.fold(
-            (l) => throw l.toString(),
-            (r) => r
-    );
+    result.fold((l) => throw l.toString(), (r) => r);
   }
 }

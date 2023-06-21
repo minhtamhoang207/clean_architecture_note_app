@@ -63,7 +63,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '451290973054',
     projectId: 'just-notes-a6a46',
     storageBucket: 'just-notes-a6a46.appspot.com',
-    iosClientId: '451290973054-3scko80josdn4a1h6hbt300rl4p3o7uk.apps.googleusercontent.com',
+    iosClientId:
+        '451290973054-3scko80josdn4a1h6hbt300rl4p3o7uk.apps.googleusercontent.com',
     iosBundleId: 'com.tom.cleanArchitectureNoteApp',
   );
 }

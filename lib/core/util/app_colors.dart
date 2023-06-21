@@ -10,5 +10,4 @@ class AppColors {
   static const Color beaver = Color(0xFFA18478);
   static const Color oceanBlue = Color(0xFF4F4BBD);
   static const Color greenSheen = Color(0xFF74AAAC);
-
 }

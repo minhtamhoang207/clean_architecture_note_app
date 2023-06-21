@@ -1,14 +1,14 @@
-import 'dart:developer';
 import 'package:flutter/services.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:local_auth/local_auth.dart';
 
-final biometricAuthProvider = StateNotifierProvider.autoDispose<BiometricAuthProvider, LoadState>((ref){
+final biometricAuthProvider =
+    StateNotifierProvider.autoDispose<BiometricAuthProvider, LoadState>((ref) {
   return BiometricAuthProvider();
 });
 
 class BiometricAuthProvider extends StateNotifier<LoadState> {
-  BiometricAuthProvider():super(LoadState.empty);
+  BiometricAuthProvider() : super(LoadState.empty);
 
   LocalAuthentication auth = LocalAuthentication();
 
@@ -35,14 +35,14 @@ class BiometricAuthProvider extends StateNotifier<LoadState> {
           biometricOnly: true,
         ),
       );
-      if(authenticated){
+      if (authenticated) {
         state = LoadState.success;
       } else {
         state = LoadState.failed;
       }
     } on PlatformException {
       return;
-    } catch (e){
+    } catch (e) {
       state = LoadState.failed;
     }
   }
@@ -53,6 +53,4 @@ class BiometricAuthProvider extends StateNotifier<LoadState> {
   }
 }
 
-enum LoadState {
-  empty, loading, success, failed
-}
+enum LoadState { empty, loading, success, failed }

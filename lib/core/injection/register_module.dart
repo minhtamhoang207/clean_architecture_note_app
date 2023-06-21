@@ -21,17 +21,19 @@ abstract class RegisterModule {
   Future<Database> get database async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = '${documentsDirectory.path}just_notes.db';
-    return await openDatabase(path, version: 1,
-        onOpen: (db) {},
-        onCreate: (Database db, int version) async {
-          await db.execute("CREATE TABLE Notes ("
-              "id INTEGER PRIMARY KEY,"
-              "title TEXT,"
-              "content TEXT,"
-              "important INTEGER,"
-              "create_at INTEGER"
-              ")");
-        },
+    return await openDatabase(
+      path,
+      version: 1,
+      onOpen: (db) {},
+      onCreate: (Database db, int version) async {
+        await db.execute("CREATE TABLE Notes ("
+            "id INTEGER PRIMARY KEY,"
+            "title TEXT,"
+            "content TEXT,"
+            "important INTEGER,"
+            "create_at INTEGER"
+            ")");
+      },
     );
   }
 

@@ -17,5 +17,4 @@ abstract class AuthService {
 
   @POST('/auth/login')
   Future<void> login(@Body() LoginParams userAuth);
-
 }
