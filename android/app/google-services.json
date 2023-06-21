@@ -1,33 +1,55 @@
 {
   "project_info": {
+<<<<<<< Updated upstream
     "project_number": "451290973054",
     "project_id": "just-notes-a6a46",
     "storage_bucket": "just-notes-a6a46.appspot.com"
+=======
+    "project_number": "688222660602",
+    "project_id": "note-49ef8",
+    "storage_bucket": "note-49ef8.appspot.com"
+>>>>>>> Stashed changes
   },
   "client": [
     {
       "client_info": {
+<<<<<<< Updated upstream
         "mobilesdk_app_id": "1:451290973054:android:c23c1298062762e97a292f",
+=======
+        "mobilesdk_app_id": "1:688222660602:android:ae21e72416744449866643",
+>>>>>>> Stashed changes
         "android_client_info": {
           "package_name": "com.tom.just_notes"
         }
       },
       "oauth_client": [
         {
+<<<<<<< Updated upstream
           "client_id": "451290973054-9mst46qgdhcplk4uij2ifdbk1ft79rjb.apps.googleusercontent.com",
+=======
+          "client_id": "688222660602-tk1bdsm514igsr2ujgndhooh8jrsre5e.apps.googleusercontent.com",
+>>>>>>> Stashed changes
           "client_type": 3
         }
       ],
       "api_key": [
         {
+<<<<<<< Updated upstream
           "current_key": "AIzaSyA0xxRIFOQR0J1Mg7WrU84_dEcFIwm4tng"
+=======
+          "current_key": "AIzaSyBG3vfvSU9L6tpCN4JmFxlDEVJ--QCDNVA"
+>>>>>>> Stashed changes
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
+<<<<<<< Updated upstream
               "client_id": "451290973054-9mst46qgdhcplk4uij2ifdbk1ft79rjb.apps.googleusercontent.com",
+=======
+              "client_id": "688222660602-tk1bdsm514igsr2ujgndhooh8jrsre5e.apps.googleusercontent.com",
+>>>>>>> Stashed changes
               "client_type": 3
             }
           ]
