@@ -6,7 +6,7 @@ import 'package:retrofit/http.dart';
 
 part 'auth_service.g.dart';
 
-@LazySingleton(as: _AuthService)
+@lazySingleton
 @RestApi(baseUrl: Constants.baseUrl)
 abstract class AuthService {
   @factoryMethod

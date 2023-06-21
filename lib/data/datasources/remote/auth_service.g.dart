@@ -9,7 +9,10 @@ part of 'auth_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _AuthService implements AuthService {
-  _AuthService(this._dio) {
+  _AuthService(
+    this._dio, {
+    this.baseUrl,
+  }) {
     baseUrl ??= 'https://musketeer-api.tk/api/v1';
   }
 
@@ -18,12 +21,11 @@ class _AuthService implements AuthService {
   String? baseUrl;
 
   @override
-  Future<void> register(userAuth) async {
+  Future<void> register(LoginParams userAuth) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(userAuth.toJson());
+    final _data = userAuth;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
@@ -35,17 +37,19 @@ class _AuthService implements AuthService {
           queryParameters: queryParameters,
           data: _data,
         )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return;
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   @override
-  Future<void> login(userAuth) async {
+  Future<void> login(LoginParams userAuth) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    _data.addAll(userAuth.toJson());
+    final _data = userAuth;
     await _dio.fetch<void>(_setStreamType<void>(Options(
       method: 'POST',
       headers: _headers,
@@ -57,8 +61,11 @@ class _AuthService implements AuthService {
           queryParameters: queryParameters,
           data: _data,
         )
-        .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    return;
+        .copyWith(
+            baseUrl: _combineBaseUrls(
+          _dio.options.baseUrl,
+          baseUrl,
+        ))));
   }
 
   RequestOptions _setStreamType<T>(RequestOptions requestOptions) {
@@ -72,5 +79,22 @@ class _AuthService implements AuthService {
       }
     }
     return requestOptions;
+  }
+
+  String _combineBaseUrls(
+    String dioBaseUrl,
+    String? baseUrl,
+  ) {
+    if (baseUrl == null || baseUrl.trim().isEmpty) {
+      return dioBaseUrl;
+    }
+
+    final url = Uri.parse(baseUrl);
+
+    if (url.isAbsolute) {
+      return url.toString();
+    }
+
+    return Uri.parse(dioBaseUrl).resolveUri(url).toString();
   }
 }

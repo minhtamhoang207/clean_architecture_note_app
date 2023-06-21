@@ -10,7 +10,7 @@ import 'package:just_notes/core/route/route.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await configureInjection(Environment.dev);
+  await configureInjection();
   runApp(ProviderScope(observers: [Logger()], child: const MyApp()));
 }
 

@@ -1,0 +1,25 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'expense_model.dart';
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+_$_ExpenseModel _$$_ExpenseModelFromJson(Map<String, dynamic> json) =>
+    _$_ExpenseModel(
+      id: json['id'] as int,
+      userId: json['userId'] as int,
+      amount: json['amount'] as int,
+      note: json['note'] as String?,
+      createAt: json['createAt'] as int,
+    );
+
+Map<String, dynamic> _$$_ExpenseModelToJson(_$_ExpenseModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'userId': instance.userId,
+      'amount': instance.amount,
+      'note': instance.note,
+      'createAt': instance.createAt,
+    };

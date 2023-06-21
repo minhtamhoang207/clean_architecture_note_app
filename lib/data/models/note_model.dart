@@ -7,12 +7,12 @@ part 'note_model.g.dart';
 @freezed
 class NoteModel with _$NoteModel {
   factory NoteModel(
-      {required int id,
-      required String title,
-      required String content,
-      required int important,
-      @JsonKey(name: 'create_at')
-      required int createAt}) = _NoteModel;
+      {int? id,
+        int? userId,
+      String? title,
+      String? content,
+      int? important,
+      int? createAt}) = _NoteModel;
 
   factory NoteModel.fromJson(Map<String, dynamic> json) =>
       _$NoteModelFromJson(json);
@@ -21,6 +21,7 @@ class NoteModel with _$NoteModel {
 extension NoteModelX on NoteModel {
   Note toEntity() => Note(
       id: id,
+      userId: userId,
       title: title,
       content: content,
       important: important,

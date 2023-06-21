@@ -111,7 +111,7 @@ class HomePageState extends ConsumerState<HomePage> {
   Widget listItem(Note note) {
     return GestureDetector(
         onTapDown: (TapDownDetails details) {
-          _showPopupMenu(details.globalPosition, note.id);
+          _showPopupMenu(details.globalPosition, note.id ?? 0);
         },
         child: IntrinsicHeight(
           child: Stack(
@@ -131,7 +131,7 @@ class HomePageState extends ConsumerState<HomePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        note.title,
+                        note.title ?? '',
                         style: const TextStyle(
                             color: AppColors.white,
                             fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class HomePageState extends ConsumerState<HomePage> {
                       ),
                       const Gap(8),
                       Text(
-                        note.content,
+                        note.content ?? '',
                         overflow: TextOverflow.ellipsis,
                         maxLines: 6,
                         style: TextStyle(
@@ -152,7 +152,10 @@ class HomePageState extends ConsumerState<HomePage> {
                         children: [
                           Expanded(
                             child: Text(
-                              '${DateTime.fromMillisecondsSinceEpoch(note.createAt).day}/${DateTime.fromMillisecondsSinceEpoch(note.createAt).month.toString()}',
+                              '00/00/0000',
+                              // '${DateTime.fromMillisecondsSinceEpoch(
+                              //     note.createAt
+                              // ).day}/${DateTime.fromMillisecondsSinceEpoch(note.createAt).month.toString()}',
                               overflow: TextOverflow.ellipsis,
                               maxLines: 6,
                               style: TextStyle(

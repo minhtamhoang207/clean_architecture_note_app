@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'note_model.dart';
 
@@ -20,12 +20,12 @@ NoteModel _$NoteModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NoteModel {
-  int get id => throw _privateConstructorUsedError;
-  String get title => throw _privateConstructorUsedError;
-  String get content => throw _privateConstructorUsedError;
-  int get important => throw _privateConstructorUsedError;
-  @JsonKey(name: 'create_at')
-  int get createAt => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  int? get userId => throw _privateConstructorUsedError;
+  String? get title => throw _privateConstructorUsedError;
+  String? get content => throw _privateConstructorUsedError;
+  int? get important => throw _privateConstructorUsedError;
+  int? get createAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -39,11 +39,12 @@ abstract class $NoteModelCopyWith<$Res> {
       _$NoteModelCopyWithImpl<$Res, NoteModel>;
   @useResult
   $Res call(
-      {int id,
-      String title,
-      String content,
-      int important,
-      @JsonKey(name: 'create_at') int createAt});
+      {int? id,
+      int? userId,
+      String? title,
+      String? content,
+      int? important,
+      int? createAt});
 }
 
 /// @nodoc
@@ -59,33 +60,38 @@ class _$NoteModelCopyWithImpl<$Res, $Val extends NoteModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? content = null,
-    Object? important = null,
-    Object? createAt = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? title = freezed,
+    Object? content = freezed,
+    Object? important = freezed,
+    Object? createAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      important: null == important
+              as String?,
+      important: freezed == important
           ? _value.important
           : important // ignore: cast_nullable_to_non_nullable
-              as int,
-      createAt: null == createAt
+              as int?,
+      createAt: freezed == createAt
           ? _value.createAt
           : createAt // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ) as $Val);
   }
 }
@@ -98,11 +104,12 @@ abstract class _$$_NoteModelCopyWith<$Res> implements $NoteModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
-      String title,
-      String content,
-      int important,
-      @JsonKey(name: 'create_at') int createAt});
+      {int? id,
+      int? userId,
+      String? title,
+      String? content,
+      int? important,
+      int? createAt});
 }
 
 /// @nodoc
@@ -116,33 +123,38 @@ class __$$_NoteModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? title = null,
-    Object? content = null,
-    Object? important = null,
-    Object? createAt = null,
+    Object? id = freezed,
+    Object? userId = freezed,
+    Object? title = freezed,
+    Object? content = freezed,
+    Object? important = freezed,
+    Object? createAt = freezed,
   }) {
     return _then(_$_NoteModel(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
-      title: null == title
+              as int?,
+      userId: freezed == userId
+          ? _value.userId
+          : userId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: freezed == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as String,
-      content: null == content
+              as String?,
+      content: freezed == content
           ? _value.content
           : content // ignore: cast_nullable_to_non_nullable
-              as String,
-      important: null == important
+              as String?,
+      important: freezed == important
           ? _value.important
           : important // ignore: cast_nullable_to_non_nullable
-              as int,
-      createAt: null == createAt
+              as int?,
+      createAt: freezed == createAt
           ? _value.createAt
           : createAt // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
     ));
   }
 }
@@ -151,30 +163,32 @@ class __$$_NoteModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_NoteModel implements _NoteModel {
   _$_NoteModel(
-      {required this.id,
-      required this.title,
-      required this.content,
-      required this.important,
-      @JsonKey(name: 'create_at') required this.createAt});
+      {this.id,
+      this.userId,
+      this.title,
+      this.content,
+      this.important,
+      this.createAt});
 
   factory _$_NoteModel.fromJson(Map<String, dynamic> json) =>
       _$$_NoteModelFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
-  final String title;
+  final int? userId;
   @override
-  final String content;
+  final String? title;
   @override
-  final int important;
+  final String? content;
   @override
-  @JsonKey(name: 'create_at')
-  final int createAt;
+  final int? important;
+  @override
+  final int? createAt;
 
   @override
   String toString() {
-    return 'NoteModel(id: $id, title: $title, content: $content, important: $important, createAt: $createAt)';
+    return 'NoteModel(id: $id, userId: $userId, title: $title, content: $content, important: $important, createAt: $createAt)';
   }
 
   @override
@@ -183,6 +197,7 @@ class _$_NoteModel implements _NoteModel {
         (other.runtimeType == runtimeType &&
             other is _$_NoteModel &&
             (identical(other.id, id) || other.id == id) &&
+            (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.content, content) || other.content == content) &&
             (identical(other.important, important) ||
@@ -194,7 +209,7 @@ class _$_NoteModel implements _NoteModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, title, content, important, createAt);
+      Object.hash(runtimeType, id, userId, title, content, important, createAt);
 
   @JsonKey(ignore: true)
   @override
@@ -212,26 +227,28 @@ class _$_NoteModel implements _NoteModel {
 
 abstract class _NoteModel implements NoteModel {
   factory _NoteModel(
-      {required final int id,
-      required final String title,
-      required final String content,
-      required final int important,
-      @JsonKey(name: 'create_at') required final int createAt}) = _$_NoteModel;
+      {final int? id,
+      final int? userId,
+      final String? title,
+      final String? content,
+      final int? important,
+      final int? createAt}) = _$_NoteModel;
 
   factory _NoteModel.fromJson(Map<String, dynamic> json) =
       _$_NoteModel.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
-  String get title;
+  int? get userId;
   @override
-  String get content;
+  String? get title;
   @override
-  int get important;
+  String? get content;
   @override
-  @JsonKey(name: 'create_at')
-  int get createAt;
+  int? get important;
+  @override
+  int? get createAt;
   @override
   @JsonKey(ignore: true)
   _$$_NoteModelCopyWith<_$_NoteModel> get copyWith =>

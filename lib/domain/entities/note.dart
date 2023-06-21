@@ -1,13 +1,16 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class Note {
+  Note(
+      { this.id,
+       this.userId,
+       this.title,
+       this.content,
+       this.important,
+       this.createAt});
 
-part 'note.freezed.dart';
-
-@freezed
-class Note with _$Note {
-  const factory Note(
-      {required int id,
-      required String title,
-      required String content,
-      required int important,
-      required int createAt}) = _Note;
+  final int? id;
+  final int? userId;
+  final String? title;
+  final String? content;
+  final int? important;
+  final int? createAt;
 }

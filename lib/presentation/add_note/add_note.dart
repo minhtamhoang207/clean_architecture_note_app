@@ -51,6 +51,7 @@ class AddNote extends HookConsumerWidget {
                     .read(listNoteController)
                     .addNote(
                         note: AddNoteParams(
+                            userId: 0,
                             title: title.value,
                             content: content.value,
                             important: state.value,
