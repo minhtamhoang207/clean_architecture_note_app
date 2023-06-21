@@ -18,10 +18,6 @@ jobs:
         uses: dart-code-checker/dart-code-metrics-action@v2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Checkout code
-        run: dart pub get
-      - name: Analyze Dart
-        uses: zgosalvez/github-actions-analyze-dart@v1
 
   build:
     needs: check
@@ -47,6 +43,10 @@ jobs:
         with:
           flutter-version: '3.7.10'
           channel: "stable"
+      - name: Checkout code
+        run: dart pub get
+      - name: Analyze Dart
+        uses: zgosalvez/github-actions-analyze-dart@v1
       - run: flutter pub get
       - run: flutter build apk
       - uses: actions/upload-artifact@v1
