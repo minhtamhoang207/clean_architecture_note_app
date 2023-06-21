@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451290973054",
+    "project_id": "just-notes-a6a46",
+    "storage_bucket": "just-notes-a6a46.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451290973054:android:c23c1298062762e97a292f",
+        "android_client_info": {
+          "package_name": "com.tom.just_notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451290973054-9mst46qgdhcplk4uij2ifdbk1ft79rjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0xxRIFOQR0J1Mg7WrU84_dEcFIwm4tng"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451290973054-9mst46qgdhcplk4uij2ifdbk1ft79rjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
