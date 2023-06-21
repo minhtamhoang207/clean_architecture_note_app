@@ -25,8 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: dart-lang/setup-dart@v1
+        with:
+          flutter-version: '3.7.10'
+          channel: "stable"
 
-      - run: dart pub get
+      - run: flutter pub get
       - run: dart fix --apply
       - run: dart format .
       - run: dart analyze
