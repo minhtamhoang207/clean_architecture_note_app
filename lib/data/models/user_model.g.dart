@@ -10,7 +10,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       id: json['id'] as int,
       name: json['name'] as String?,
       avatar: json['avatar'] as String?,
-      createAt: json['createAt'] as int?,
+      createAt: json['create_at'] as int?,
     );
 
 Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
@@ -18,5 +18,5 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'id': instance.id,
       'name': instance.name,
       'avatar': instance.avatar,
-      'createAt': instance.createAt,
+      'create_at': instance.createAt,
     };

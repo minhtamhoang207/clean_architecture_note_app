@@ -12,7 +12,7 @@ _$_NoteModel _$$_NoteModelFromJson(Map<String, dynamic> json) => _$_NoteModel(
       title: json['title'] as String?,
       content: json['content'] as String?,
       important: json['important'] as int?,
-      createAt: json['createAt'] as int?,
+      createAt: json['create_at'] as int?,
     );
 
 Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
@@ -22,5 +22,5 @@ Map<String, dynamic> _$$_NoteModelToJson(_$_NoteModel instance) =>
       'title': instance.title,
       'content': instance.content,
       'important': instance.important,
-      'createAt': instance.createAt,
+      'create_at': instance.createAt,
     };

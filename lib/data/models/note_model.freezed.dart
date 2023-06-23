@@ -25,6 +25,7 @@ mixin _$NoteModel {
   String? get title => throw _privateConstructorUsedError;
   String? get content => throw _privateConstructorUsedError;
   int? get important => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_at')
   int? get createAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +45,7 @@ abstract class $NoteModelCopyWith<$Res> {
       String? title,
       String? content,
       int? important,
-      int? createAt});
+      @JsonKey(name: 'create_at') int? createAt});
 }
 
 /// @nodoc
@@ -109,7 +110,7 @@ abstract class _$$_NoteModelCopyWith<$Res> implements $NoteModelCopyWith<$Res> {
       String? title,
       String? content,
       int? important,
-      int? createAt});
+      @JsonKey(name: 'create_at') int? createAt});
 }
 
 /// @nodoc
@@ -168,7 +169,7 @@ class _$_NoteModel implements _NoteModel {
       this.title,
       this.content,
       this.important,
-      this.createAt});
+      @JsonKey(name: 'create_at') this.createAt});
 
   factory _$_NoteModel.fromJson(Map<String, dynamic> json) =>
       _$$_NoteModelFromJson(json);
@@ -184,6 +185,7 @@ class _$_NoteModel implements _NoteModel {
   @override
   final int? important;
   @override
+  @JsonKey(name: 'create_at')
   final int? createAt;
 
   @override
@@ -232,7 +234,7 @@ abstract class _NoteModel implements NoteModel {
       final String? title,
       final String? content,
       final int? important,
-      final int? createAt}) = _$_NoteModel;
+      @JsonKey(name: 'create_at') final int? createAt}) = _$_NoteModel;
 
   factory _NoteModel.fromJson(Map<String, dynamic> json) =
       _$_NoteModel.fromJson;
@@ -248,6 +250,7 @@ abstract class _NoteModel implements NoteModel {
   @override
   int? get important;
   @override
+  @JsonKey(name: 'create_at')
   int? get createAt;
   @override
   @JsonKey(ignore: true)

@@ -1,11 +1,13 @@
 class AddNoteParams {
   AddNoteParams(
-      {required this.title,
+      {this.id,
+      required this.title,
       required this.content,
       required this.important,
       required this.createAt,
       required this.userId});
 
+  final int? id;
   final String title;
   final String content;
   final int important;
@@ -13,6 +15,7 @@ class AddNoteParams {
   final int userId;
 
   Map<String, dynamic> toMap() => {
+        if (id != null) 'id': id,
         'title': title,
         'content': content,
         'important': important,

@@ -12,6 +12,7 @@ class NoteModel with _$NoteModel {
       String? title,
       String? content,
       int? important,
+      @JsonKey(name: 'create_at')
       int? createAt}) = _NoteModel;
 
   factory NoteModel.fromJson(Map<String, dynamic> json) =>
