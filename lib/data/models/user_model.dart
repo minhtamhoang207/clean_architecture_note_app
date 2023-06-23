@@ -10,6 +10,7 @@ class UserModel with _$UserModel {
      required int id,
      String? name,
      String? avatar,
+     @JsonKey(name: 'create_at')
      int? createAt
   }) = _UserModel;
 

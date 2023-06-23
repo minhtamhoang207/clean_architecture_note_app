@@ -24,6 +24,7 @@ mixin _$ExpenseModel {
   int get userId => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_at')
   int get createAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -38,7 +39,12 @@ abstract class $ExpenseModelCopyWith<$Res> {
           ExpenseModel value, $Res Function(ExpenseModel) then) =
       _$ExpenseModelCopyWithImpl<$Res, ExpenseModel>;
   @useResult
-  $Res call({int id, int userId, int amount, String? note, int createAt});
+  $Res call(
+      {int id,
+      int userId,
+      int amount,
+      String? note,
+      @JsonKey(name: 'create_at') int createAt});
 }
 
 /// @nodoc
@@ -93,7 +99,12 @@ abstract class _$$_ExpenseModelCopyWith<$Res>
       __$$_ExpenseModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, int userId, int amount, String? note, int createAt});
+  $Res call(
+      {int id,
+      int userId,
+      int amount,
+      String? note,
+      @JsonKey(name: 'create_at') int createAt});
 }
 
 /// @nodoc
@@ -146,7 +157,7 @@ class _$_ExpenseModel implements _ExpenseModel {
       required this.userId,
       required this.amount,
       this.note,
-      required this.createAt});
+      @JsonKey(name: 'create_at') required this.createAt});
 
   factory _$_ExpenseModel.fromJson(Map<String, dynamic> json) =>
       _$$_ExpenseModelFromJson(json);
@@ -160,6 +171,7 @@ class _$_ExpenseModel implements _ExpenseModel {
   @override
   final String? note;
   @override
+  @JsonKey(name: 'create_at')
   final int createAt;
 
   @override
@@ -201,11 +213,12 @@ class _$_ExpenseModel implements _ExpenseModel {
 
 abstract class _ExpenseModel implements ExpenseModel {
   factory _ExpenseModel(
-      {required final int id,
-      required final int userId,
-      required final int amount,
-      final String? note,
-      required final int createAt}) = _$_ExpenseModel;
+          {required final int id,
+          required final int userId,
+          required final int amount,
+          final String? note,
+          @JsonKey(name: 'create_at') required final int createAt}) =
+      _$_ExpenseModel;
 
   factory _ExpenseModel.fromJson(Map<String, dynamic> json) =
       _$_ExpenseModel.fromJson;
@@ -219,6 +232,7 @@ abstract class _ExpenseModel implements ExpenseModel {
   @override
   String? get note;
   @override
+  @JsonKey(name: 'create_at')
   int get createAt;
   @override
   @JsonKey(ignore: true)

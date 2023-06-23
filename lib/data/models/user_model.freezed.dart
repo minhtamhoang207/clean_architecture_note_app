@@ -23,6 +23,7 @@ mixin _$UserModel {
   int get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
+  @JsonKey(name: 'create_at')
   int? get createAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +37,11 @@ abstract class $UserModelCopyWith<$Res> {
   factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
-  $Res call({int id, String? name, String? avatar, int? createAt});
+  $Res call(
+      {int id,
+      String? name,
+      String? avatar,
+      @JsonKey(name: 'create_at') int? createAt});
 }
 
 /// @nodoc
@@ -85,7 +90,11 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       __$$_UserModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String? name, String? avatar, int? createAt});
+  $Res call(
+      {int id,
+      String? name,
+      String? avatar,
+      @JsonKey(name: 'create_at') int? createAt});
 }
 
 /// @nodoc
@@ -128,7 +137,11 @@ class __$$_UserModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserModel implements _UserModel {
-  _$_UserModel({required this.id, this.name, this.avatar, this.createAt});
+  _$_UserModel(
+      {required this.id,
+      this.name,
+      this.avatar,
+      @JsonKey(name: 'create_at') this.createAt});
 
   factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
       _$$_UserModelFromJson(json);
@@ -140,6 +153,7 @@ class _$_UserModel implements _UserModel {
   @override
   final String? avatar;
   @override
+  @JsonKey(name: 'create_at')
   final int? createAt;
 
   @override
@@ -182,7 +196,7 @@ abstract class _UserModel implements UserModel {
       {required final int id,
       final String? name,
       final String? avatar,
-      final int? createAt}) = _$_UserModel;
+      @JsonKey(name: 'create_at') final int? createAt}) = _$_UserModel;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$_UserModel.fromJson;
@@ -194,6 +208,7 @@ abstract class _UserModel implements UserModel {
   @override
   String? get avatar;
   @override
+  @JsonKey(name: 'create_at')
   int? get createAt;
   @override
   @JsonKey(ignore: true)

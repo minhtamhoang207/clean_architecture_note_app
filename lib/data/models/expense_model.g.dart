@@ -12,7 +12,7 @@ _$_ExpenseModel _$$_ExpenseModelFromJson(Map<String, dynamic> json) =>
       userId: json['userId'] as int,
       amount: json['amount'] as int,
       note: json['note'] as String?,
-      createAt: json['createAt'] as int,
+      createAt: json['create_at'] as int,
     );
 
 Map<String, dynamic> _$$_ExpenseModelToJson(_$_ExpenseModel instance) =>
@@ -21,5 +21,5 @@ Map<String, dynamic> _$$_ExpenseModelToJson(_$_ExpenseModel instance) =>
       'userId': instance.userId,
       'amount': instance.amount,
       'note': instance.note,
-      'createAt': instance.createAt,
+      'create_at': instance.createAt,
     };
