@@ -48,8 +48,8 @@ class NoteView extends StatelessWidget {
                             }
                           },
                           icon: state.showOverlay
-                            ? const Icon(CupertinoIcons.arrow_turn_up_left)
-                            : const Icon(Icons.add_circle_outline_sharp)
+                              ? const Icon(CupertinoIcons.arrow_turn_up_left)
+                              : const Icon(Icons.add_circle_outline_sharp)
                       );
                     default:
                       return const SizedBox();
@@ -69,20 +69,20 @@ class NoteView extends StatelessWidget {
                     return empty();
                   } else {
                     return RefreshIndicator(
-                    onRefresh: () async {
-                      context.read<NoteBloc>().add(GetAllNoteEvent());
-                    },
-                    child: MasonryGridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 15,
-                      crossAxisSpacing: 15,
-                      padding: const EdgeInsets.only(top: 20, bottom: 150),
-                      itemCount: state.listNote.length,
-                      itemBuilder: (context, index) {
-                        return listItem(state.listNote[index]);
+                      onRefresh: () async {
+                        context.read<NoteBloc>().add(GetAllNoteEvent());
                       },
-                    ).animate().fadeIn().slide(begin: const Offset(0, -0.3)),
-                  );
+                      child: MasonryGridView.count(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 15,
+                        crossAxisSpacing: 15,
+                        padding: const EdgeInsets.only(top: 20, bottom: 150),
+                        itemCount: state.listNote.length,
+                        itemBuilder: (context, index) {
+                          return listItem(state.listNote[index]);
+                        },
+                      ).animate().fadeIn().slide(begin: const Offset(0, -0.3)),
+                    );
                   }
                 default:
                   return Center(
@@ -102,8 +102,8 @@ class NoteView extends StatelessWidget {
         return GestureDetector(
             onTap: () async {
               final bool? reload = await context.pushNamed(
-                AddNoteView.routeName,
-                extra: note
+                  AddNoteView.routeName,
+                  extra: note
               );
               if (context.mounted && (reload ?? false)) {
                 context.read<NoteBloc>().add(GetAllNoteEvent());
@@ -112,8 +112,8 @@ class NoteView extends StatelessWidget {
             onLongPress: () {
               context.read<NoteBloc>().add(
                   ChangeOverlayStatus(
-                    showOverlay: true,
-                    listNote: state.listNote
+                      showOverlay: true,
+                      listNote: state.listNote
                   )
               );
             },
@@ -178,35 +178,35 @@ class NoteView extends StatelessWidget {
                       )
                   ),
                   Visibility(
-                    visible: state.showOverlay,
-                    child: Container(
-                      padding: const EdgeInsets.only(top: 10, right: 10),
-                      decoration: BoxDecoration(
-                          color: AppColors.primaryColor.withOpacity(0.9),
-                          borderRadius: BorderRadius.circular(18)
-                      ),
-                      child: Align(
-                          alignment: Alignment.topRight,
-                          child: GestureDetector(
-                            onTap: () {
-                              context.read<NoteBloc>().add(
-                                DeleteNote(noteId: note.id ?? 0)
-                              );
-                            },
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: Colors.red.withOpacity(0.2),
-                                shape: BoxShape.circle,
+                      visible: state.showOverlay,
+                      child: Container(
+                        padding: const EdgeInsets.only(top: 10, right: 10),
+                        decoration: BoxDecoration(
+                            color: AppColors.primaryColor.withOpacity(0.9),
+                            borderRadius: BorderRadius.circular(18)
+                        ),
+                        child: Align(
+                            alignment: Alignment.topRight,
+                            child: GestureDetector(
+                              onTap: () {
+                                context.read<NoteBloc>().add(
+                                    DeleteNote(noteId: note.id ?? 0)
+                                );
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.red.withOpacity(0.2),
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Icon(
+                                    CupertinoIcons.delete_left_fill,
+                                    color: Colors.red, size: 18
+                                ),
                               ),
-                              child: const Icon(
-                                  CupertinoIcons.delete_left_fill,
-                                  color: Colors.red, size: 18
-                              ),
-                            ),
-                          )
-                      ),
-                    ).animate().fadeIn(duration: 30.ms)
+                            )
+                        ),
+                      ).animate().fadeIn(duration: 30.ms)
                   ),
                 ],
               ),
