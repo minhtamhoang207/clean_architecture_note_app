@@ -21,7 +21,6 @@ class FriendBloc extends Bloc<FriendEvent, FriendState> {
   FutureOr<void> _onGetAllFriend(GetAllFriend event, Emitter<FriendState> emit) async {
     emit(const FriendState.loading());
     final response = await _getFriendsUseCase.call();
-    await Future.delayed(Duration(seconds: 20));
     response.fold(
       (l) => emit(FriendState.failure(errorMessage: l.toString())),
       (r) => emit(FriendState.success(listUser: r))

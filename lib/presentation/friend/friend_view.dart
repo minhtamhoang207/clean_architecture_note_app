@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:just_notes/core/injection/injection.dart';
 import 'package:just_notes/core/util/app_colors.dart';
+import 'package:just_notes/presentation/add_friend/add_friend_view.dart';
 import 'package:just_notes/presentation/friend/bloc/friend_bloc.dart';
 import 'package:just_notes/widgets/empty_widget.dart';
 
@@ -14,13 +16,25 @@ class FriendView extends StatelessWidget {
     return BlocProvider(
       create: (_) => getIt<FriendBloc>()..add(GetAllFriend()),
       child: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
           backgroundColor: Colors.black,
-          appBar: AppBar(
-            backgroundColor: Colors.black,
-            centerTitle: false,
-            title: const Text('Friends'),
-          ),
-          body: BlocBuilder<FriendBloc, FriendState>(
+          centerTitle: false,
+          title: const Text('Friends'),
+          actions: [
+            IconButton(
+                onPressed: () async {
+                  final bool? reload = await context
+                      .pushNamed(AddFriendView.routeName);
+                  if (context.mounted && (reload ?? false)) {
+                    context.read<FriendBloc>().add(GetAllFriend());
+                  }
+                },
+                icon: const Icon(Icons.add_circle_outline_sharp)
+            )
+          ],
+        ),
+        body: BlocBuilder<FriendBloc, FriendState>(
             builder: (context, state) {
               switch (state.status) {
                 case GetFriendStatus.loading:
@@ -68,7 +82,7 @@ class FriendView extends StatelessWidget {
                   return const EmptyWidget();
               }
             },
-          )
+          ),
       ),
     );
   }

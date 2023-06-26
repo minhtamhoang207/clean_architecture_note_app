@@ -13,14 +13,14 @@ import 'package:dio/dio.dart' as _i4;
 import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:just_notes/core/helper/interceptor.dart' as _i8;
-import 'package:just_notes/core/injection/register_module.dart' as _i23;
+import 'package:just_notes/core/injection/register_module.dart' as _i24;
 import 'package:just_notes/data/datasources/local/local.dart' as _i5;
 import 'package:just_notes/data/datasources/remote/auth_service.dart' as _i12;
 import 'package:just_notes/data/repositories/auth_repository.dart' as _i18;
 import 'package:just_notes/data/repositories/note_repository.dart' as _i7;
 import 'package:just_notes/domain/repositories/i_auth_repository.dart' as _i17;
 import 'package:just_notes/domain/repositories/i_note_repository.dart' as _i6;
-import 'package:just_notes/domain/usecases/auth_usecase.dart' as _i21;
+import 'package:just_notes/domain/usecases/auth_usecase.dart' as _i22;
 import 'package:just_notes/domain/usecases/friend_usecases/add_friend_usecase.dart'
     as _i10;
 import 'package:just_notes/domain/usecases/friend_usecases/delete_friend_usecase.dart'
@@ -35,9 +35,11 @@ import 'package:just_notes/domain/usecases/note_usecases/get_note_usecase.dart'
     as _i16;
 import 'package:just_notes/domain/usecases/note_usecases/update_note_usecase.dart'
     as _i9;
-import 'package:just_notes/presentation/add_note/bloc/add_note_bloc.dart'
+import 'package:just_notes/presentation/add_friend/bloc/add_friend_bloc.dart'
     as _i20;
-import 'package:just_notes/presentation/friend/bloc/friend_bloc.dart' as _i22;
+import 'package:just_notes/presentation/add_note/bloc/add_note_bloc.dart'
+    as _i21;
+import 'package:just_notes/presentation/friend/bloc/friend_bloc.dart' as _i23;
 import 'package:just_notes/presentation/note/bloc/note_bloc.dart' as _i19;
 import 'package:sqflite/sqflite.dart' as _i3;
 
@@ -87,16 +89,18 @@ extension GetItInjectableX on _i1.GetIt {
           gh<_i16.GetNotesUseCase>(),
           gh<_i14.DeleteNoteUseCase>(),
         ));
-    gh.factory<_i20.AddNoteBloc>(() => _i20.AddNoteBloc(
+    gh.factory<_i20.AddFriendBloc>(
+        () => _i20.AddFriendBloc(gh<_i10.AddFriendUseCase>()));
+    gh.factory<_i21.AddNoteBloc>(() => _i21.AddNoteBloc(
           gh<_i11.AddNotesUseCase>(),
           gh<_i9.UpdateNotesUseCase>(),
         ));
-    gh.lazySingleton<_i21.AuthUseCase>(
-        () => _i21.AuthUseCase(gh<_i17.IAuthRepository>()));
-    gh.factory<_i22.FriendBloc>(
-        () => _i22.FriendBloc(gh<_i15.GetFriendsUseCase>()));
+    gh.lazySingleton<_i22.AuthUseCase>(
+        () => _i22.AuthUseCase(gh<_i17.IAuthRepository>()));
+    gh.factory<_i23.FriendBloc>(
+        () => _i23.FriendBloc(gh<_i15.GetFriendsUseCase>()));
     return this;
   }
 }
 
-class _$RegisterModule extends _i23.RegisterModule {}
+class _$RegisterModule extends _i24.RegisterModule {}
