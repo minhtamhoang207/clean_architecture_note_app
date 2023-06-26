@@ -1,11 +1,11 @@
 class Note {
   Note(
-      { this.id,
-       this.userId,
-       this.title,
-       this.content,
-       this.important,
-       this.createAt});
+      {this.id,
+      this.userId,
+      this.title,
+      this.content,
+      this.important,
+      this.createAt});
 
   final int? id;
   final int? userId;

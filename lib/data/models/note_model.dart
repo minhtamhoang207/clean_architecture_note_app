@@ -8,12 +8,11 @@ part 'note_model.g.dart';
 class NoteModel with _$NoteModel {
   factory NoteModel(
       {int? id,
-        int? userId,
+      int? userId,
       String? title,
       String? content,
       int? important,
-      @JsonKey(name: 'create_at')
-      int? createAt}) = _NoteModel;
+      @JsonKey(name: 'create_at') int? createAt}) = _NoteModel;
 
   factory NoteModel.fromJson(Map<String, dynamic> json) =>
       _$NoteModelFromJson(json);

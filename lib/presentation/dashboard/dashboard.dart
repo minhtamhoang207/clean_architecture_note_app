@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:just_notes/core/util/app_colors.dart';
@@ -54,14 +53,29 @@ class Dashboard extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        _bottomBarItem(context, state,
-                            const Icon(Icons.home_filled, color: Color(0xFFEEEEEE)), 0),
-                        _bottomBarItem(context, state,
-                            const Icon(Icons.wallet, color: Color(0xFFEEEEEE)), 1),
-                        _bottomBarItem(context, state,
-                            const Icon(Icons.people_alt_outlined, color: Color(0xFFEEEEEE)), 2),
-                        _bottomBarItem(context, state,
-                            const Icon(Icons.account_circle_outlined, color: Color(0xFFEEEEEE)), 3),
+                        _bottomBarItem(
+                            context,
+                            state,
+                            const Icon(Icons.home_filled,
+                                color: Color(0xFFEEEEEE)),
+                            0),
+                        _bottomBarItem(
+                            context,
+                            state,
+                            const Icon(Icons.wallet, color: Color(0xFFEEEEEE)),
+                            1),
+                        _bottomBarItem(
+                            context,
+                            state,
+                            const Icon(Icons.people_alt_outlined,
+                                color: Color(0xFFEEEEEE)),
+                            2),
+                        _bottomBarItem(
+                            context,
+                            state,
+                            const Icon(Icons.account_circle_outlined,
+                                color: Color(0xFFEEEEEE)),
+                            3),
                       ],
                     ),
                   )

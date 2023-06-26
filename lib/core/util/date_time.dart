@@ -43,7 +43,7 @@ extension PatternExtension on Pattern {
         return 'yyyy年 MM月 dd日 HH時 mm分';
       case Pattern.yyyyMMdd:
         return 'yyyyMMdd';
-    // return 'yyyy年　MM月　dd日';
+      // return 'yyyy年　MM月　dd日';
       case Pattern.yyyyMMddHHmmss:
         return 'yyyy-MM-dd HH:mm:ss';
       case Pattern.yyyyMMddHHmmss_JP:
@@ -109,8 +109,8 @@ class DateTimeUtils {
   static bool isToday(DateTime date) {
     final now = DateTime.now();
     return DateTime(date.year, date.month, date.day)
-        .difference(DateTime(now.year, now.month, now.day))
-        .inDays ==
+            .difference(DateTime(now.year, now.month, now.day))
+            .inDays ==
         0;
   }
 

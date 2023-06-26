@@ -8,52 +8,42 @@ class FriendView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      appBar: AppBar(
         backgroundColor: Colors.black,
-        centerTitle: false,
-        title: const Text(
-          'Friends'
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          centerTitle: false,
+          title: const Text('Friends'),
         ),
-      ),
-      body: ListView.separated(
-          padding: const EdgeInsets.all(10),
-          itemBuilder: (context, index) {
-            return const Row(
-              children: [
-                CircleAvatar(
-                  backgroundColor: AppColors.primaryColor,
-                ),
-                Gap(12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Hoang Minh Tam',
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
-                      ),
-                      Gap(8),
-                      Text(
-                        '0375266302',
-                        style: TextStyle(
-                            color: Colors.white
-                        ),
-                      ),
-                    ],
+        body: ListView.separated(
+            padding: const EdgeInsets.all(10),
+            itemBuilder: (context, index) {
+              return const Row(
+                children: [
+                  CircleAvatar(
+                    backgroundColor: AppColors.primaryColor,
                   ),
-                )
-              ],
-            );
-          },
-          separatorBuilder: (_, __) => const Divider(
-            color: AppColors.ruddyBrown,
-            height: 20
-          ),
-          itemCount: 3
-      )
-    );
+                  Gap(12),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Hoang Minh Tam',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        Gap(8),
+                        Text(
+                          '0375266302',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              );
+            },
+            separatorBuilder: (_, __) =>
+                const Divider(color: AppColors.ruddyBrown, height: 20),
+            itemCount: 3));
   }
 }

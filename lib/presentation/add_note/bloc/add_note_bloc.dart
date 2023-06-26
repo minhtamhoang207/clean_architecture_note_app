@@ -13,32 +13,32 @@ part 'add_note_state.dart';
 
 @injectable
 class AddNoteBloc extends Bloc<AddNoteEvent, AddNoteState> {
-
   TextEditingController titleController = TextEditingController();
   TextEditingController contentController = TextEditingController();
 
   final AddNotesUseCase _addNotesUseCase;
   final UpdateNotesUseCase _updateNotesUseCase;
 
-  AddNoteBloc(this._addNotesUseCase, this._updateNotesUseCase) : super(const AddNoteState.initial()) {
+  AddNoteBloc(this._addNotesUseCase, this._updateNotesUseCase)
+      : super(const AddNoteState.initial()) {
     on<ToggleImportant>(_onToggleImportant);
     on<SaveNote>(_onSaveNote);
   }
 
-  FutureOr<void> _onToggleImportant(ToggleImportant event, Emitter<AddNoteState> emit) async {
+  FutureOr<void> _onToggleImportant(
+      ToggleImportant event, Emitter<AddNoteState> emit) async {
     emit(AddNoteState._(isImportant: event.isImportant));
   }
 
   FutureOr<void> _onSaveNote(SaveNote event, Emitter<AddNoteState> emit) async {
-    if (titleController.text.trim().isNotEmpty
-        || contentController.text.trim().isNotEmpty) {
+    if (titleController.text.trim().isNotEmpty ||
+        contentController.text.trim().isNotEmpty) {
       final response = event.isUpdate
-        ? await _updateNotesUseCase.call(params: event.addNoteParams)
-        : await _addNotesUseCase.call(params: event.addNoteParams);
+          ? await _updateNotesUseCase.call(params: event.addNoteParams)
+          : await _addNotesUseCase.call(params: event.addNoteParams);
       response.fold(
-        (l) => emit(AddNoteState.failure(errorMessage: l.toString())),
-        (r) => emit(const AddNoteState.success())
-      );
+          (l) => emit(AddNoteState.failure(errorMessage: l.toString())),
+          (r) => emit(const AddNoteState.success()));
     } else {
       emit(const AddNoteState.empty());
     }
