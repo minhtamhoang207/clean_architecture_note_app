@@ -14,7 +14,7 @@ class ManageMoney extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: false,
-        title: Text(
+        title: const Text(
           'Wallet'
         ),
         actions: [
@@ -22,7 +22,7 @@ class ManageMoney extends StatelessWidget {
             onPressed: () {
 
             },
-            icon: Icon(Icons.add_circle_outline_sharp, color: Colors.white),
+            icon: const Icon(Icons.add_circle_outline_sharp, color: Colors.white),
           )
         ],
       ),
@@ -37,7 +37,7 @@ class ManageMoney extends StatelessWidget {
           ListView.separated(
               shrinkWrap: true,
               padding: const EdgeInsets.all(10),
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return const Row(
                   children: [
