@@ -11,8 +11,7 @@ class ExpenseModel with _$ExpenseModel {
       required int userId,
       required int amount,
       String? note,
-      @JsonKey(name: 'create_at')
-      required int createAt}) = _ExpenseModel;
+      @JsonKey(name: 'create_at') required int createAt}) = _ExpenseModel;
 
   factory ExpenseModel.fromJson(Map<String, dynamic> json) =>
       _$ExpenseModelFromJson(json);

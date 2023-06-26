@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_notes/data/models/note_model.dart';
@@ -80,7 +78,8 @@ class HomeRepository implements INoteRepository {
   }
 
   @override
-  Future<Either<Exception, void>> updateNote({required AddNoteParams note}) async {
+  Future<Either<Exception, void>> updateNote(
+      {required AddNoteParams note}) async {
     try {
       await _localDataSource.updateNote(note);
       return const Right(null);

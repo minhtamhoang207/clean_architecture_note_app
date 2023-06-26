@@ -12,31 +12,33 @@ part 'note_state.dart';
 
 @lazySingleton
 class NoteBloc extends Bloc<NoteEvent, NoteState> {
-
   final GetNotesUseCase _getNotesUseCase;
   final DeleteNoteUseCase _deleteNoteUseCase;
 
-  NoteBloc(this._getNotesUseCase, this._deleteNoteUseCase) : super(NoteInitial()) {
+  NoteBloc(this._getNotesUseCase, this._deleteNoteUseCase)
+      : super(NoteInitial()) {
     on<GetAllNoteEvent>(_onGetAllNote);
     on<DeleteNote>(_onDeleteNote);
     on<ChangeOverlayStatus>(_onChangeOverlayStatus);
   }
 
-  FutureOr<void> _onGetAllNote(GetAllNoteEvent event, Emitter<NoteState> emit) async {
+  FutureOr<void> _onGetAllNote(
+      GetAllNoteEvent event, Emitter<NoteState> emit) async {
     emit(LoadingNote());
     final response = await _getNotesUseCase.call();
-    response.fold(
-      (l) => emit(const LoadNoteFailed()),
-      (r) => emit(LoadNoteSuccess(listNote: r))
-    );
+    response.fold((l) => emit(const LoadNoteFailed()),
+        (r) => emit(LoadNoteSuccess(listNote: r)));
   }
 
-  FutureOr<void> _onDeleteNote(DeleteNote event, Emitter<NoteState> emit) async {
+  FutureOr<void> _onDeleteNote(
+      DeleteNote event, Emitter<NoteState> emit) async {
     await _deleteNoteUseCase.call(params: event.noteId);
     add(GetAllNoteEvent());
   }
 
-  FutureOr<void> _onChangeOverlayStatus(ChangeOverlayStatus event, Emitter<NoteState> emit) {
-    emit(LoadNoteSuccess(listNote: event.listNote, showOverlay: event.showOverlay));
+  FutureOr<void> _onChangeOverlayStatus(
+      ChangeOverlayStatus event, Emitter<NoteState> emit) {
+    emit(LoadNoteSuccess(
+        listNote: event.listNote, showOverlay: event.showOverlay));
   }
 }

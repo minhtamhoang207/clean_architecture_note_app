@@ -9,10 +9,7 @@ part of 'auth_service.dart';
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
 class _AuthService implements AuthService {
-  _AuthService(
-    this._dio, {
-    this.baseUrl,
-  }) {
+  _AuthService(this._dio) {
     baseUrl ??= 'https://musketeer-api.tk/api/v1';
   }
 

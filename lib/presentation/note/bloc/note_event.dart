@@ -10,7 +10,8 @@ class GetAllNoteEvent extends NoteEvent {
 }
 
 class ChangeOverlayStatus extends NoteEvent {
-  const ChangeOverlayStatus({required this.showOverlay, required this.listNote});
+  const ChangeOverlayStatus(
+      {required this.showOverlay, required this.listNote});
 
   final bool showOverlay;
   final List<Note> listNote;

@@ -38,10 +38,10 @@ class NoteView extends StatelessWidget {
                             if (state.showOverlay) {
                               context.read<NoteBloc>().add(ChangeOverlayStatus(
                                   showOverlay: false,
-                                  listNote: state.listNote
-                              ));
+                                  listNote: state.listNote));
                             } else {
-                              final bool? reload = await context.pushNamed(AddNoteView.routeName);
+                              final bool? reload = await context
+                                  .pushNamed(AddNoteView.routeName);
                               if (context.mounted && (reload ?? false)) {
                                 context.read<NoteBloc>().add(GetAllNoteEvent());
                               }
@@ -49,8 +49,7 @@ class NoteView extends StatelessWidget {
                           },
                           icon: state.showOverlay
                               ? const Icon(CupertinoIcons.arrow_turn_up_left)
-                              : const Icon(Icons.add_circle_outline_sharp)
-                      );
+                              : const Icon(Icons.add_circle_outline_sharp));
                     default:
                       return const SizedBox();
                   }
@@ -101,21 +100,15 @@ class NoteView extends StatelessWidget {
         state as LoadNoteSuccess;
         return GestureDetector(
             onTap: () async {
-              final bool? reload = await context.pushNamed(
-                  AddNoteView.routeName,
-                  extra: note
-              );
+              final bool? reload =
+                  await context.pushNamed(AddNoteView.routeName, extra: note);
               if (context.mounted && (reload ?? false)) {
                 context.read<NoteBloc>().add(GetAllNoteEvent());
               }
             },
             onLongPress: () {
-              context.read<NoteBloc>().add(
-                  ChangeOverlayStatus(
-                      showOverlay: true,
-                      listNote: state.listNote
-                  )
-              );
+              context.read<NoteBloc>().add(ChangeOverlayStatus(
+                  showOverlay: true, listNote: state.listNote));
             },
             child: IntrinsicHeight(
               child: Stack(
@@ -147,7 +140,8 @@ class NoteView extends StatelessWidget {
                               ),
                               Visibility(
                                 visible: note.important == 1,
-                                child: const Icon(Icons.star, color: AppColors.orange),
+                                child: const Icon(Icons.star,
+                                    color: AppColors.orange),
                               )
                             ],
                           ),
@@ -164,9 +158,7 @@ class NoteView extends StatelessWidget {
                           const Gap(18),
                           Text(
                             DateTimeUtils.formatDateFromInt(
-                                note.createAt ?? 0,
-                                Pattern.hhmmssddMMyyyy
-                            ),
+                                note.createAt ?? 0, Pattern.hhmmssddMMyyyy),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 6,
                             style: TextStyle(
@@ -175,23 +167,21 @@ class NoteView extends StatelessWidget {
                                 fontSize: 10),
                           ),
                         ],
-                      )
-                  ),
+                      )),
                   Visibility(
                       visible: state.showOverlay,
                       child: Container(
                         padding: const EdgeInsets.only(top: 10, right: 10),
                         decoration: BoxDecoration(
                             color: AppColors.primaryColor.withOpacity(0.9),
-                            borderRadius: BorderRadius.circular(18)
-                        ),
+                            borderRadius: BorderRadius.circular(18)),
                         child: Align(
                             alignment: Alignment.topRight,
                             child: GestureDetector(
                               onTap: () {
-                                context.read<NoteBloc>().add(
-                                    DeleteNote(noteId: note.id ?? 0)
-                                );
+                                context
+                                    .read<NoteBloc>()
+                                    .add(DeleteNote(noteId: note.id ?? 0));
                               },
                               child: Container(
                                 padding: const EdgeInsets.all(8),
@@ -201,13 +191,11 @@ class NoteView extends StatelessWidget {
                                 ),
                                 child: const Icon(
                                     CupertinoIcons.delete_left_fill,
-                                    color: Colors.red, size: 18
-                                ),
+                                    color: Colors.red,
+                                    size: 18),
                               ),
-                            )
-                        ),
-                      ).animate().fadeIn(duration: 30.ms)
-                  ),
+                            )),
+                      ).animate().fadeIn(duration: 30.ms)),
                 ],
               ),
             ));
@@ -224,9 +212,7 @@ class NoteView extends StatelessWidget {
           Gap(10),
           Text(
             'Nothing to show ...',
-            style: TextStyle(
-                color: AppColors.white
-            ),
+            style: TextStyle(color: AppColors.white),
           ),
         ],
       ),

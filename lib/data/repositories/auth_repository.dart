@@ -1,11 +1,8 @@
-import 'dart:io';
-
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:just_notes/core/params/login_param.dart';
 import 'package:just_notes/data/datasources/remote/auth_service.dart';
 import 'package:just_notes/domain/repositories/i_auth_repository.dart';
-import '../../core/helper/network_info.dart';
 
 @LazySingleton(as: IAuthRepository)
 class AuthRepository implements IAuthRepository {

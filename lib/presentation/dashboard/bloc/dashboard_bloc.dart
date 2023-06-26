@@ -11,7 +11,8 @@ class DashboardBloc extends Bloc<DashboardEvent, DashboardState> {
     on<ChangeTabEvent>(_onChangeTab);
   }
 
-  FutureOr<void> _onChangeTab(ChangeTabEvent event, Emitter<DashboardState> emit) {
+  FutureOr<void> _onChangeTab(
+      ChangeTabEvent event, Emitter<DashboardState> emit) {
     emit(DashboardInitial(currentTab: event.tab));
   }
 }
