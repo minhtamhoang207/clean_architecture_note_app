@@ -36,7 +36,7 @@ class ManageMoney extends StatelessWidget {
                 padding: const EdgeInsets.all(10),
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return const Row(
+                  return Row(
                     children: [
                       Expanded(
                         child: Text(
