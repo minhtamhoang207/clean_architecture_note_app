@@ -11,6 +11,7 @@ import 'package:just_notes/domain/entities/note.dart';
 import 'package:just_notes/presentation/add_note/add_note.dart';
 import 'package:just_notes/presentation/note/bloc/note_bloc.dart';
 import 'package:gap/gap.dart';
+import 'package:just_notes/widgets/empty_widget.dart';
 
 class NoteView extends StatelessWidget {
   static String routeName = 'note';
@@ -65,7 +66,7 @@ class NoteView extends StatelessWidget {
                 case LoadNoteSuccess:
                   state as LoadNoteSuccess;
                   if (state.listNote.isEmpty) {
-                    return empty();
+                    return const EmptyWidget();
                   } else {
                     return RefreshIndicator(
                       onRefresh: () async {
@@ -200,22 +201,6 @@ class NoteView extends StatelessWidget {
               ),
             ));
       },
-    );
-  }
-
-  Widget empty() {
-    return const Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(Icons.note_outlined, size: 30, color: AppColors.white),
-          Gap(10),
-          Text(
-            'Nothing to show ...',
-            style: TextStyle(color: AppColors.white),
-          ),
-        ],
-      ),
     );
   }
 }

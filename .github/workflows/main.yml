@@ -1,11 +1,15 @@
 name: Build & upload to Firebase App Distribution
 
+#on:
+#  pull_request:
+#    types:
+#      - closed
+#    branches:
+#      - main
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
-      - main
+      - develop
 
 jobs:
 #  check:
@@ -23,13 +27,13 @@ jobs:
 
   build:
 #    needs: check
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.7.10'
-          channel: "stable"
+#      - uses: actions/checkout@v3
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          flutter-version: '3.7.10'
+#          channel: "stable"
 
 #      - run: flutter pub get
 #      - run: dart fix --apply
