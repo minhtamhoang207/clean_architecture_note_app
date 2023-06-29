@@ -7,8 +7,8 @@ part 'expense_model.g.dart';
 @freezed
 class ExpenseModel with _$ExpenseModel {
   factory ExpenseModel(
-      {required int id,
-      required int userId,
+      {int? id,
+      @JsonKey(name: 'user_id') required int userId,
       required int amount,
       String? note,
       @JsonKey(name: 'create_at') required int createAt}) = _ExpenseModel;

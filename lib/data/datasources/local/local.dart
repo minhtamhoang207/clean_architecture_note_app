@@ -1,6 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:just_notes/core/helper/sqflite_helper.dart';
+import 'package:just_notes/data/models/expense_model.dart';
 import 'package:just_notes/data/models/note_model.dart';
+import 'package:just_notes/data/models/user_expense_model.dart';
 import 'package:just_notes/data/models/user_model.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -15,6 +17,10 @@ abstract class IHomeLocalDataSource {
   Future<List<UserModel>> getFriends();
   Future<void> addFriend(UserModel? addFiendParams);
   Future<void> deleteFriend(int friendID);
+
+  Future<List<UserExpenseModel>> getAllExpense();
+  Future<void> addExpense({ExpenseModel? expenseParams});
+  Future<void> deleteExpense({required int expenseId});
 }
 
 @LazySingleton(as: IHomeLocalDataSource)
@@ -47,6 +53,16 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
   Future<void> addNote(AddNoteParams? params) async {
     if (params != null) {
       await _database.insert(LocalDatabase.tableNote, params.toMap());
+    }
+  }
+
+
+  @override
+  Future<void> updateNote(AddNoteParams? addNoteParams) async {
+    if (addNoteParams != null) {
+      await _database.update(LocalDatabase.tableNote, addNoteParams.toMap(),
+          where: '${LocalDatabase.columnId} = ?',
+          whereArgs: [addNoteParams.id]);
     }
   }
 
@@ -87,11 +103,50 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
   }
 
   @override
-  Future<void> updateNote(AddNoteParams? addNoteParams) async {
-    if (addNoteParams != null) {
-      await _database.update(LocalDatabase.tableNote, addNoteParams.toMap(),
-          where: '${LocalDatabase.columnId} = ?',
-          whereArgs: [addNoteParams.id]);
+  Future<void> addExpense({ExpenseModel? expenseParams}) async {
+    if (expenseParams != null) {
+      await _database.insert(
+          LocalDatabase.tableExpense,
+          expenseParams.toJson()
+      );
     }
+  }
+
+  @override
+  Future<void> deleteExpense({required int expenseId}) {
+    // TODO: implement deleteExpense
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<UserExpenseModel>> getAllExpense() async {
+    final List<Map<String, dynamic>> queryResult = await _database.rawQuery('''
+    SELECT * FROM ${LocalDatabase.tableExpense}
+    INNER JOIN ${LocalDatabase.tableUser}
+    ON ${LocalDatabase.tableExpense}.${LocalDatabase.columnUserId} = 
+    ${LocalDatabase.tableUser}.${LocalDatabase.columnId}
+  ''');
+
+    final List<UserExpenseModel> userExpenses = queryResult.map((result) {
+      final expense = ExpenseModel(
+          id: result[LocalDatabase.columnId],
+          userId: result[LocalDatabase.columnUserId],
+          amount: result[LocalDatabase.columnAmount],
+          createAt: result[LocalDatabase.columnCreateAt],
+          note: result[LocalDatabase.columnNote],
+      );
+      final user = UserModel(
+          id: result[LocalDatabase.columnUserId],
+          name: result[LocalDatabase.columnName],
+          avatar: result[LocalDatabase.columnAvatar],
+          createAt: result[LocalDatabase.columnCreateAt],
+      );
+      return UserExpenseModel(
+        user: user,
+        expense: expense
+      );
+    }).toList();
+
+    return userExpenses;
   }
 }

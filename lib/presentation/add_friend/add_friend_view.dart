@@ -20,8 +20,14 @@ class AddFriendView extends StatefulWidget {
 
 class _AddFriendViewState extends State<AddFriendView> {
 
-  final _bloc = getIt<AddFriendBloc>();
+  late final AddFriendBloc _bloc;
   final _nameController = TextEditingController();
+
+  @override
+  void initState() {
+    _bloc = context.read<AddFriendBloc>();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +46,6 @@ class _AddFriendViewState extends State<AddFriendView> {
                 // TODO: Handle this case.
                   break;
                 case AddFriendStatus.loading:
-                // TODO: Handle this case.
                   break;
                 case AddFriendStatus.failure:
                   log(state.errorMessage ?? '');
@@ -53,8 +58,8 @@ class _AddFriendViewState extends State<AddFriendView> {
             child: TextButton(
                 onPressed: () async {
                   _bloc.add(ConfirmAddFriend(userModel: UserModel(
-                    id: DateTime.now().millisecondsSinceEpoch,
                     name: _nameController.text.trim(),
+                    id: DateTime.now().millisecondsSinceEpoch,
                     createAt: DateTime.now().millisecondsSinceEpoch,
                   )));
                 },
@@ -82,6 +87,10 @@ class _AddFriendViewState extends State<AddFriendView> {
           ),
           const Gap(35),
           TextFormField(
+            controller: _nameController,
+            style: const TextStyle(
+              color: AppColors.white
+            ),
             decoration: const InputDecoration(
               enabledBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: AppColors.white),

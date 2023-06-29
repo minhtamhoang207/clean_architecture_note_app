@@ -28,5 +28,5 @@ class AddFriendState extends Equatable {
   const AddFriendState.empty() : this._();
 
   @override
-  List<Object?> get props => [errorMessage];
+  List<Object?> get props => [errorMessage, addFriendStatus];
 }

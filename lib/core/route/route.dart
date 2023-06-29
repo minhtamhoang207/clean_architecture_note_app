@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:just_notes/core/injection/injection.dart';
 import 'package:just_notes/domain/entities/note.dart';
+import 'package:just_notes/presentation/add_expense/add_expense_view.dart';
 import 'package:just_notes/presentation/add_friend/add_friend_view.dart';
 import 'package:just_notes/presentation/add_friend/bloc/add_friend_bloc.dart';
 import 'package:just_notes/presentation/add_note/add_note.dart';
@@ -55,6 +56,13 @@ class AppRoute {
             create: (_) => getIt<AddFriendBloc>(),
             child: const AddFriendView(),
           );
+        },
+      ),
+      GoRoute(
+        name: AddExpenseView.routeName,
+        path: AddExpenseView.routeLocation,
+        builder: (BuildContext context, GoRouterState state) {
+          return const AddExpenseView();
         },
       ),
     ],

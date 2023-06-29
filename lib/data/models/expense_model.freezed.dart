@@ -20,7 +20,8 @@ ExpenseModel _$ExpenseModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ExpenseModel {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
+  @JsonKey(name: 'user_id')
   int get userId => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String? get note => throw _privateConstructorUsedError;
@@ -40,8 +41,8 @@ abstract class $ExpenseModelCopyWith<$Res> {
       _$ExpenseModelCopyWithImpl<$Res, ExpenseModel>;
   @useResult
   $Res call(
-      {int id,
-      int userId,
+      {int? id,
+      @JsonKey(name: 'user_id') int userId,
       int amount,
       String? note,
       @JsonKey(name: 'create_at') int createAt});
@@ -60,17 +61,17 @@ class _$ExpenseModelCopyWithImpl<$Res, $Val extends ExpenseModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? userId = null,
     Object? amount = null,
     Object? note = freezed,
     Object? createAt = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -100,8 +101,8 @@ abstract class _$$_ExpenseModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      int userId,
+      {int? id,
+      @JsonKey(name: 'user_id') int userId,
       int amount,
       String? note,
       @JsonKey(name: 'create_at') int createAt});
@@ -118,17 +119,17 @@ class __$$_ExpenseModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? userId = null,
     Object? amount = null,
     Object? note = freezed,
     Object? createAt = null,
   }) {
     return _then(_$_ExpenseModel(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -153,8 +154,8 @@ class __$$_ExpenseModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_ExpenseModel implements _ExpenseModel {
   _$_ExpenseModel(
-      {required this.id,
-      required this.userId,
+      {this.id,
+      @JsonKey(name: 'user_id') required this.userId,
       required this.amount,
       this.note,
       @JsonKey(name: 'create_at') required this.createAt});
@@ -163,8 +164,9 @@ class _$_ExpenseModel implements _ExpenseModel {
       _$$_ExpenseModelFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
+  @JsonKey(name: 'user_id')
   final int userId;
   @override
   final int amount;
@@ -213,8 +215,8 @@ class _$_ExpenseModel implements _ExpenseModel {
 
 abstract class _ExpenseModel implements ExpenseModel {
   factory _ExpenseModel(
-          {required final int id,
-          required final int userId,
+          {final int? id,
+          @JsonKey(name: 'user_id') required final int userId,
           required final int amount,
           final String? note,
           @JsonKey(name: 'create_at') required final int createAt}) =
@@ -224,8 +226,9 @@ abstract class _ExpenseModel implements ExpenseModel {
       _$_ExpenseModel.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
+  @JsonKey(name: 'user_id')
   int get userId;
   @override
   int get amount;

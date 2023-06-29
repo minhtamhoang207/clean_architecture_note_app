@@ -1,9 +1,12 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
+import 'package:just_notes/data/models/expense_model.dart';
 import 'package:just_notes/data/models/note_model.dart';
+import 'package:just_notes/data/models/user_expense_model.dart';
 import 'package:just_notes/data/models/user_model.dart';
 import 'package:just_notes/domain/entities/note.dart';
 import 'package:just_notes/domain/entities/user.dart';
+import 'package:just_notes/domain/entities/user_expense.dart';
 import 'package:just_notes/domain/repositories/i_note_repository.dart';
 import '../../core/params/add_note_param.dart';
 import '../datasources/local/local.dart';
@@ -82,6 +85,27 @@ class HomeRepository implements INoteRepository {
       {required AddNoteParams note}) async {
     try {
       await _localDataSource.updateNote(note);
+      return const Right(null);
+    } catch (e) {
+      return Left(Exception(e));
+    }
+  }
+
+  @override
+  Future<Either<Exception, List<UserExpense>>> getAllExpense() async {
+    try {
+      final List<UserExpenseModel> models = await _localDataSource.getAllExpense();
+      final entities = models.map<UserExpense>((e) => e.toEntity()).toList();
+      return Right(entities);
+    } catch (e) {
+      return Left(Exception(e));
+    }
+  }
+
+  @override
+  Future<Either<Exception, void>> addExpense({required ExpenseModel param}) async {
+    try {
+      await _localDataSource.addExpense(expenseParams: param);
       return const Right(null);
     } catch (e) {
       return Left(Exception(e));
