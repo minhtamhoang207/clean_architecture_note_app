@@ -47,7 +47,7 @@ class FriendView extends StatelessWidget {
                   if (state.listFriend.isEmpty) {
                     return const EmptyWidget();
                   } else {
-                    return RefreshIndicator.adaptive(
+                    return RefreshIndicator(
                       onRefresh: () async {
                         context.read<FriendBloc>().add(GetAllFriend());
                       },

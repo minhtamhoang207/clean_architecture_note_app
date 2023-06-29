@@ -51,7 +51,7 @@ class ManageMoney extends StatelessWidget {
                   if (state.listUserExpense.isEmpty) {
                     return const EmptyWidget();
                   } else {
-                    return RefreshIndicator.adaptive(
+                    return RefreshIndicator(
                       onRefresh: () async {
                         context.read<ManageMoneyBloc>().add(GetAllUserExpense());
                       },
