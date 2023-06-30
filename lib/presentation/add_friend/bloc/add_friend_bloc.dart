@@ -1,5 +1,5 @@
 import 'dart:async';
-
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
@@ -16,6 +16,7 @@ class AddFriendBloc extends Bloc<AddFriendEvent, AddFriendState> {
 
   AddFriendBloc(this._addFriendUseCase) : super(const AddFriendState.initial()) {
     on<ConfirmAddFriend>(_onConfirmAddFriend);
+    on<PickAvatar>(_onPickAvatar);
   }
 
   FutureOr<void> _onConfirmAddFriend(ConfirmAddFriend event, Emitter<AddFriendState> emit) async {
@@ -25,5 +26,11 @@ class AddFriendBloc extends Bloc<AddFriendEvent, AddFriendState> {
             (l) => emit(const AddFriendState.failure()),
             (r) => emit(const AddFriendState.success())
     );
+  }
+
+  FutureOr<void> _onPickAvatar(PickAvatar event, Emitter<AddFriendState> emit) {
+    emit(AddFriendState._(
+      avatar: event.avatar
+    ));
   }
 }

@@ -7,6 +7,7 @@ import 'package:just_notes/core/injection/injection.dart';
 import 'package:just_notes/core/util/app_colors.dart';
 import 'package:just_notes/presentation/add_friend/add_friend_view.dart';
 import 'package:just_notes/presentation/friend/bloc/friend_bloc.dart';
+import 'package:just_notes/presentation/manage_money/manage_money.dart';
 import 'package:just_notes/widgets/empty_widget.dart';
 
 class FriendView extends StatelessWidget {
@@ -73,7 +74,7 @@ class FriendView extends StatelessWidget {
                                   onPressed: (_) {
                                     context.read<FriendBloc>().add(
                                         DeleteFriend(
-                                            friendId: state.listFriend[index].id
+                                            friendId: state.listFriend[index].id ?? 0
                                         )
                                     );
                                   },
@@ -85,29 +86,39 @@ class FriendView extends StatelessWidget {
                               ],
                             ),
                             key: ValueKey(index),
-                            child: Row(
-                              children: [
-                                const CircleAvatar(
-                                  backgroundColor: AppColors.primaryColor,
-                                ),
-                                const Gap(12),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        state.listFriend[index].name ?? '',
-                                        style: const TextStyle(color: Colors.white),
+                            child: InkWell(
+                              onTap: () {
+                                context.pushNamed(
+                                  ManageMoney.routeName,
+                                  extra: state.listFriend[index].id
+                                );
+                              },
+                              child: Row(
+                                children: [
+                                  state.listFriend[index].avatar == null
+                                    ? const CircleAvatar(
+                                        backgroundColor: AppColors.primaryColor,
+                                      )
+                                    : CircleAvatar(
+                                        backgroundColor: AppColors.primaryColor,
+                                        backgroundImage: FileImage(
+                                          state.listFriend[index].avatar!
+                                        )
                                       ),
-                                      // const Gap(8),
-                                      // const Text(
-                                      //   '...',
-                                      //   style: TextStyle(color: Colors.white),
-                                      // ),
-                                    ],
-                                  ),
-                                )
-                              ],
+                                  const Gap(12),
+                                  Expanded(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          state.listFriend[index].name ?? '',
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           );
                         },

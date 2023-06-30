@@ -111,4 +111,14 @@ class HomeRepository implements INoteRepository {
       return Left(Exception(e));
     }
   }
+
+  @override
+  Future<Either<Exception, void>> deleteExpense({required int expenseId}) async {
+    try {
+      await _localDataSource.deleteExpense(expenseId: expenseId);
+      return const Right(null);
+    } catch (e) {
+      return Left(Exception(e));
+    }
+  }
 }

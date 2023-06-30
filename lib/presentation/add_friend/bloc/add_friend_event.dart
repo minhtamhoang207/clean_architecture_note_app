@@ -12,3 +12,12 @@ class ConfirmAddFriend extends AddFriendEvent {
   @override
   List<Object?> get props => [userModel];
 }
+
+class PickAvatar extends AddFriendEvent {
+  const PickAvatar({required this.avatar});
+
+  final File avatar;
+
+  @override
+  List<Object?> get props => [avatar];
+}

@@ -1,8 +1,10 @@
+import 'dart:io';
+
 class User {
   User({required this.id, this.name, this.avatar, this.createAt});
 
-  int id;
+  int? id;
   String? name;
-  String? avatar;
+  File? avatar;
   int? createAt;
 }

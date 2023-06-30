@@ -96,6 +96,7 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
               LocalDatabase.columnCreateAt,
             ],
             orderBy: '${LocalDatabase.columnCreateAt} DESC');
+
     List<UserModel> listFriend = List.generate(
         maps.length, (index) => UserModel.fromJson(maps[index]),
         growable: true);
@@ -105,6 +106,7 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
   @override
   Future<void> addExpense({ExpenseModel? expenseParams}) async {
     if (expenseParams != null) {
+      print(expenseParams.toString());
       await _database.insert(
           LocalDatabase.tableExpense,
           expenseParams.toJson()
@@ -113,15 +115,19 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
   }
 
   @override
-  Future<void> deleteExpense({required int expenseId}) {
-    // TODO: implement deleteExpense
-    throw UnimplementedError();
+  Future<void> deleteExpense({required int expenseId}) async {
+    await _database.delete(LocalDatabase.tableExpense,
+        where: '${LocalDatabase.columnId} = ?', whereArgs: [expenseId]);
   }
 
   @override
   Future<List<UserExpenseModel>> getAllExpense() async {
     final List<Map<String, dynamic>> queryResult = await _database.rawQuery('''
-    SELECT * FROM ${LocalDatabase.tableExpense}
+    SELECT ${LocalDatabase.tableExpense}.*,
+    ${LocalDatabase.tableUser}.${LocalDatabase.columnId} as user_id,
+    ${LocalDatabase.tableUser}.${LocalDatabase.columnName},
+    ${LocalDatabase.tableUser}.${LocalDatabase.columnAvatar}
+    FROM ${LocalDatabase.tableExpense}
     INNER JOIN ${LocalDatabase.tableUser}
     ON ${LocalDatabase.tableExpense}.${LocalDatabase.columnUserId} = 
     ${LocalDatabase.tableUser}.${LocalDatabase.columnId}
@@ -139,7 +145,6 @@ class HomeLocalDataSource implements IHomeLocalDataSource {
           id: result[LocalDatabase.columnUserId],
           name: result[LocalDatabase.columnName],
           avatar: result[LocalDatabase.columnAvatar],
-          createAt: result[LocalDatabase.columnCreateAt],
       );
       return UserExpenseModel(
         user: user,

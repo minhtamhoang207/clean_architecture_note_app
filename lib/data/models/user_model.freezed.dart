@@ -20,7 +20,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  int get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get avatar => throw _privateConstructorUsedError;
   @JsonKey(name: 'create_at')
@@ -38,7 +38,7 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String? name,
       String? avatar,
       @JsonKey(name: 'create_at') int? createAt});
@@ -57,16 +57,16 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = freezed,
     Object? avatar = freezed,
     Object? createAt = freezed,
   }) {
     return _then(_value.copyWith(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -91,7 +91,7 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
   @override
   @useResult
   $Res call(
-      {int id,
+      {int? id,
       String? name,
       String? avatar,
       @JsonKey(name: 'create_at') int? createAt});
@@ -108,16 +108,16 @@ class __$$_UserModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
+    Object? id = freezed,
     Object? name = freezed,
     Object? avatar = freezed,
     Object? createAt = freezed,
   }) {
     return _then(_$_UserModel(
-      id: null == id
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -138,7 +138,7 @@ class __$$_UserModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_UserModel implements _UserModel {
   _$_UserModel(
-      {required this.id,
+      {this.id,
       this.name,
       this.avatar,
       @JsonKey(name: 'create_at') this.createAt});
@@ -147,7 +147,7 @@ class _$_UserModel implements _UserModel {
       _$$_UserModelFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String? name;
   @override
@@ -193,7 +193,7 @@ class _$_UserModel implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   factory _UserModel(
-      {required final int id,
+      {final int? id,
       final String? name,
       final String? avatar,
       @JsonKey(name: 'create_at') final int? createAt}) = _$_UserModel;
@@ -202,7 +202,7 @@ abstract class _UserModel implements UserModel {
       _$_UserModel.fromJson;
 
   @override
-  int get id;
+  int? get id;
   @override
   String? get name;
   @override

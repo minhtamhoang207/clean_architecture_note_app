@@ -32,22 +32,22 @@ class AccountView extends StatelessWidget {
                 fontSize: 20,
                 fontWeight: FontWeight.w500),
           ),
-          const Gap(20),
-          Container(
-            height: 100,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-                borderRadius: BorderRadius.circular(18)),
-          ),
-          const Gap(20),
-          Container(
-            height: 120,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-                borderRadius: BorderRadius.circular(18)),
-          ),
+          // const Gap(20),
+          // Container(
+          //   height: 100,
+          //   width: MediaQuery.of(context).size.width,
+          //   decoration: BoxDecoration(
+          //       color: AppColors.primaryColor,
+          //       borderRadius: BorderRadius.circular(18)),
+          // ),
+          // const Gap(20),
+          // Container(
+          //   height: 120,
+          //   width: MediaQuery.of(context).size.width,
+          //   decoration: BoxDecoration(
+          //       color: AppColors.primaryColor,
+          //       borderRadius: BorderRadius.circular(18)),
+          // ),
         ],
       ),
     );

@@ -5,11 +5,13 @@ enum AddFriendStatus { initial, loading, success, failure, empty }
 class AddFriendState extends Equatable {
   const AddFriendState._({
     this.addFriendStatus = AddFriendStatus.initial,
-    this.errorMessage
+    this.errorMessage,
+    this.avatar
   });
 
   final String? errorMessage;
   final AddFriendStatus addFriendStatus;
+  final File? avatar;
 
   const AddFriendState.initial() : this._();
 

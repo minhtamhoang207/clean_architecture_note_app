@@ -1,10 +1,12 @@
+import 'dart:convert';
 import 'dart:developer';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
-import 'package:just_notes/core/injection/injection.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:just_notes/core/util/app_colors.dart';
 import 'package:just_notes/data/models/user_model.dart';
 import 'package:just_notes/presentation/add_friend/bloc/add_friend_bloc.dart';
@@ -36,7 +38,7 @@ class _AddFriendViewState extends State<AddFriendView> {
       appBar: AppBar(
         backgroundColor: AppColors.black,
         actions: [
-          BlocListener<AddFriendBloc, AddFriendState>(
+          BlocConsumer<AddFriendBloc, AddFriendState>(
             listener: (context, state) {
               switch (state.addFriendStatus) {
                 case AddFriendStatus.success:
@@ -55,35 +57,65 @@ class _AddFriendViewState extends State<AddFriendView> {
                   break;
               }
             },
-            child: TextButton(
-                onPressed: () async {
-                  _bloc.add(ConfirmAddFriend(userModel: UserModel(
-                    name: _nameController.text.trim(),
-                    id: DateTime.now().millisecondsSinceEpoch,
-                    createAt: DateTime.now().millisecondsSinceEpoch,
-                  )));
-                },
-                style: ButtonStyle(
-                  overlayColor: MaterialStateColor.resolveWith(
-                      (states) => AppColors.primaryColor),
-                ),
-                child: const Text(
-                  'Done',
-                  style: TextStyle(
-                      color: AppColors.white, fontWeight: FontWeight.bold),
-                )),
+            builder: (context, state) {
+              return TextButton(
+                  onPressed: () async {
+
+                    List<int> fileBytes = await state.avatar?.readAsBytes() ?? [];
+                    String? base64Image = fileBytes.isEmpty
+                        ? null
+                        : base64Encode(fileBytes);
+
+                    _bloc.add(ConfirmAddFriend(userModel: UserModel(
+                      name: _nameController.text.trim(),
+                      avatar: base64Image,
+                      createAt: DateTime.now().millisecondsSinceEpoch,
+                    )));
+                  },
+                  style: ButtonStyle(
+                    overlayColor: MaterialStateColor.resolveWith(
+                            (states) => AppColors.primaryColor),
+                  ),
+                  child: const Text(
+                    'Done',
+                    style: TextStyle(
+                        color: AppColors.white, fontWeight: FontWeight.bold),
+                  ));
+            },
           )
         ],
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 20),
         children: [
-          const SizedBox(
-            height: 100,
-            width: 100,
-            child: CircleAvatar(
-              backgroundColor: AppColors.primaryColor,
-            ),
+          GestureDetector(
+            onTap: () async {
+              final ImagePicker picker = ImagePicker();
+              final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+              if (image != null) {
+                _bloc.add(PickAvatar(avatar: File(image.path)));
+              }
+            },
+            child: BlocBuilder<AddFriendBloc, AddFriendState>(
+              builder: (context, state) {
+                return Container(
+                  height: 100,
+                  width: 100,
+                  decoration: state.avatar == null
+                    ? const BoxDecoration(
+                        color: AppColors.primaryColor,
+                        shape: BoxShape.circle
+                      )
+                   : BoxDecoration(
+                        color: AppColors.primaryColor,
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: FileImage(state.avatar!)
+                        )
+                    )
+                );
+              },
+            )
           ),
           const Gap(35),
           TextFormField(

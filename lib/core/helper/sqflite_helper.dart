@@ -53,7 +53,7 @@ class LocalDatabase {
         ''');
 
     await db.execute('''
-        CREATE TABLE User (
+        CREATE TABLE $tableUser (
             $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
             $columnName TEXT,
             $columnAvatar TEXT,
@@ -62,7 +62,7 @@ class LocalDatabase {
     ''');
 
     await db.execute('''
-        CREATE TABLE Expense (
+        CREATE TABLE $tableExpense (
           $columnId INTEGER PRIMARY KEY AUTOINCREMENT,
           $columnAmount INTEGER,
           $columnCreateAt INTEGER,

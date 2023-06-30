@@ -68,7 +68,9 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                       context.read<AddExpenseBloc>().add(ConfirmAddExpense(
                         expenseModel: ExpenseModel(
                             userId: state.currentFriend?.id ?? 0,
-                            amount: int.parse(_amountController.text.replaceAll('.', '').trim()),
+                            amount: int.parse(
+                              _amountController.text.replaceAll('.', '').trim()
+                            ),
                             note: _noteController.text,
                             createAt: DateTime.now().millisecondsSinceEpoch
                         )
@@ -219,12 +221,19 @@ class _AddExpenseViewState extends State<AddExpenseView> {
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
-                              const SizedBox(
+                              SizedBox(
                                 width: 30,
                                 height: 30,
-                                child: CircleAvatar(
-                                  backgroundColor: AppColors.beaver,
-                                ),
+                                child: item.avatar == null
+                                    ? const CircleAvatar(
+                                        backgroundColor: AppColors.beaver,
+                                      )
+                                    : CircleAvatar(
+                                        backgroundColor: AppColors.beaver,
+                                        backgroundImage: FileImage(
+                                            item.avatar!
+                                        )
+                                      ),
                               ),
                               const Gap(10),
                               Expanded(

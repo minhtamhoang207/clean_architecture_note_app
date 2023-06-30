@@ -18,4 +18,5 @@ abstract class INoteRepository {
 
   Future<Either<Exception, List<UserExpense>>> getAllExpense();
   Future<Either<Exception, void>> addExpense({required ExpenseModel param});
+  Future<Either<Exception, void>> deleteExpense({required int expenseId});
 }

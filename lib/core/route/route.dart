@@ -33,7 +33,10 @@ class AppRoute {
         name: ManageMoney.routeName,
         path: ManageMoney.routeLocation,
         builder: (BuildContext context, GoRouterState state) {
-          return const ManageMoney();
+          int? userId = state.extra as int?;
+          return ManageMoney(
+            userId: userId,
+          );
         },
       ),
       GoRoute(
