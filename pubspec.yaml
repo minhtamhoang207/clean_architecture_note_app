@@ -22,6 +22,7 @@ dependencies:
   flutter_animate: 4.2.0
   flutter_slidable: 3.0.0
   dropdown_button2: 2.0.0
+  currency_text_input_formatter: 2.1.10
 
   #Util
   intl:

@@ -1,17 +1,19 @@
 part of 'add_expense_bloc.dart';
 
-enum AddExpenseStatus { initial, loading, success, failure, empty }
+enum AddExpenseStatus { initial, loading, success, failure, empty, addSuccess}
 
 class AddExpenseState extends Equatable {
   const AddExpenseState._({
     this.addExpenseStatus = AddExpenseStatus.initial,
     this.errorMessage,
-    this.listFriend = const <User>[]
+    this.listFriend = const <User>[],
+    this.currentFriend
   });
 
   final String? errorMessage;
   final AddExpenseStatus addExpenseStatus;
   final List<User> listFriend;
+  final User? currentFriend;
 
   const AddExpenseState.initial() : this._();
 
@@ -33,5 +35,5 @@ class AddExpenseState extends Equatable {
   const AddExpenseState.empty() : this._();
 
   @override
-  List<Object?> get props => [errorMessage, AddExpenseStatus, listFriend];
+  List<Object?> get props => [errorMessage, AddExpenseStatus, listFriend, currentFriend];
 }

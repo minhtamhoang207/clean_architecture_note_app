@@ -15,7 +15,6 @@ part 'add_expense_state.dart';
 
 @injectable
 class AddExpenseBloc extends Bloc<AddExpenseEvent, AddExpenseState> {
-
   final GetFriendsUseCase _getFriendsUseCase;
   final AddExpenseUseCase _addExpenseUseCase;
 
@@ -23,22 +22,32 @@ class AddExpenseBloc extends Bloc<AddExpenseEvent, AddExpenseState> {
       : super(const AddExpenseState.initial()) {
     on<GetAllFriend>(_onGetAllFriend);
     on<ConfirmAddExpense>(_onConfirmAddExpense);
+    on<SelectFriend>(_onSelectFriend);
   }
 
-  FutureOr<void> _onGetAllFriend(GetAllFriend event, Emitter<AddExpenseState> emit) async {
+  FutureOr<void> _onGetAllFriend(
+      GetAllFriend event, Emitter<AddExpenseState> emit) async {
     emit(const AddExpenseState.loading());
     final response = await _getFriendsUseCase.call();
     response.fold(
-            (l) => emit(AddExpenseState.failure(errorMessage: l.toString())),
-            (r) => emit(AddExpenseState.success(listFriend: r))
-    );
+        (l) => emit(AddExpenseState.failure(errorMessage: l.toString())),
+        (r) => emit(AddExpenseState.success(listFriend: r)));
   }
 
-  FutureOr<void> _onConfirmAddExpense(ConfirmAddExpense event, Emitter<AddExpenseState> emit) async {
+  FutureOr<void> _onConfirmAddExpense(
+      ConfirmAddExpense event, Emitter<AddExpenseState> emit) async {
     final response = await _addExpenseUseCase.call(params: event.expenseModel);
     response.fold(
-            (l) => emit(AddExpenseState.failure(errorMessage: l.toString())),
-            (r) => emit(AddExpenseState.success(listFriend: state.listFriend))
-    );
+        (l) => emit(AddExpenseState.failure(errorMessage: l.toString())),
+        (r) => emit(const AddExpenseState._(
+            addExpenseStatus: AddExpenseStatus.addSuccess)));
+  }
+
+  FutureOr<void> _onSelectFriend(
+      SelectFriend event, Emitter<AddExpenseState> emit) {
+    emit(AddExpenseState._(
+        currentFriend: event.friend,
+        addExpenseStatus: AddExpenseStatus.success,
+        listFriend: state.listFriend));
   }
 }

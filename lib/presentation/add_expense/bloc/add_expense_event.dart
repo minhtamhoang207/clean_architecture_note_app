@@ -16,3 +16,11 @@ class ConfirmAddExpense extends AddExpenseEvent {
   @override
   List<Object?> get props => [expenseModel];
 }
+
+class SelectFriend extends AddExpenseEvent {
+  const SelectFriend({required this.friend});
+  final User? friend;
+
+  @override
+  List<Object?> get props => [friend];
+}
